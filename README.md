@@ -1,2 +1,2 @@
 # BarberShop
-Projeto da Diciplina de Orientado Objeto de Java ( 4º semestre)
+Projeto da Diciplina de Orientação a Objeto em Java ( 4º semestre)
