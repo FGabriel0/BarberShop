@@ -48,7 +48,6 @@ public class LoginBarbeiro extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Entrar como Barbeiro");
 
-        TextName.setBackground(new java.awt.Color(255, 255, 255));
         TextName.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED, null, new java.awt.Color(255, 255, 255), null, null));
         TextName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -56,7 +55,6 @@ public class LoginBarbeiro extends javax.swing.JFrame {
             }
         });
 
-        TextPassword.setBackground(new java.awt.Color(255, 255, 255));
         TextPassword.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         TextPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,7 +138,7 @@ public class LoginBarbeiro extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 290, 450));
