@@ -205,6 +205,11 @@
             <Property name="text" type="java.lang.String" value="Entrar como Barbeiro?"/>
           </Properties>
         </Component>
+<<<<<<< Updated upstream
+=======
+        <Component class="javax.swing.JLabel" name="jLabel5">
+        </Component>
+>>>>>>> Stashed changes
       </SubComponents>
     </Container>
     <Component class="javax.swing.JLabel" name="jLabel1">
