@@ -4,17 +4,28 @@
  */
 package Views;
 
+import Controller.LoginClienteController;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
 /**
  *
  * @author Biel
  */
 public class LoginCliente extends javax.swing.JFrame {
 
+    private final LoginClienteController controller;
+    
+
     /**
      * Creates new form Login
      */
     public LoginCliente() {
         initComponents();
+        controller = new LoginClienteController(this);
     }
 
     /**
@@ -28,7 +39,6 @@ public class LoginCliente extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         TextName = new javax.swing.JTextField();
-        TextPassword = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -37,9 +47,10 @@ public class LoginCliente extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
+        TextPassword = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0, 140));
@@ -51,15 +62,6 @@ public class LoginCliente extends javax.swing.JFrame {
         TextName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TextNameActionPerformed(evt);
-            }
-        });
-
-        TextPassword.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        TextPassword.setAlignmentX(0.0F);
-        TextPassword.setBorder(null);
-        TextPassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextPasswordActionPerformed(evt);
             }
         });
 
@@ -100,12 +102,27 @@ public class LoginCliente extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Entrar como cliente");
 
+        TextPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextPasswordActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(91, 91, 91)
+                        .addComponent(jLabel7))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(61, 61, 61)
+                        .addComponent(jLabel9))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(87, 87, 87)
+                        .addComponent(jLabel8))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(45, 45, 45)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -117,16 +134,7 @@ public class LoginCliente extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(jLabel4)
                             .addComponent(TextName, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                            .addComponent(TextPassword)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(91, 91, 91)
-                        .addComponent(jLabel7))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addComponent(jLabel9))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(87, 87, 87)
-                        .addComponent(jLabel8)))
+                            .addComponent(TextPassword))))
                 .addContainerGap(45, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -167,13 +175,18 @@ public class LoginCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_TextNameActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+            // TODO add your handling code here:
+            controller.Autenticar();
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     private void TextPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextPasswordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TextPasswordActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -211,9 +224,28 @@ public class LoginCliente extends javax.swing.JFrame {
         });
     }
 
+    public JTextField getTextName() {
+        return TextName;
+    }
+
+    public void setTextName(JTextField TextName) {
+        this.TextName = TextName;
+    }
+
+    public JPasswordField getTextPassword() {
+        return TextPassword;
+    }
+
+    public void setTextPassword(JPasswordField TextPassword) {
+        this.TextPassword = TextPassword;
+    }
+
+   
+    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField TextName;
-    private javax.swing.JTextField TextPassword;
+    private javax.swing.JPasswordField TextPassword;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;

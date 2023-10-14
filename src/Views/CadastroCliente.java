@@ -3,18 +3,30 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Views;
-
+import Controller.ClienteCadastroController;
+import DAO.ClienteDAO;
+import DAO.Conexao;
+import Model.Cliente;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 /**
  *
  * @author guilh
  */
 public class CadastroCliente extends javax.swing.JFrame {
+    private final ClienteCadastroController controller;
 
     /**
      * Creates new form NewJFrame
      */
     public CadastroCliente() {
         initComponents();
+        controller = new ClienteCadastroController(this);
     }
 
     /**
@@ -27,16 +39,16 @@ public class CadastroCliente extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        TextName = new javax.swing.JTextField();
-        TextPassword = new javax.swing.JTextField();
+        TextSenha = new javax.swing.JTextField();
+        TextConfirmSenha = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         CriarLogin = new javax.swing.JLabel();
-        TextName1 = new javax.swing.JTextField();
-        TextName2 = new javax.swing.JTextField();
+        TextEmail = new javax.swing.JTextField();
+        TextNome = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -47,21 +59,21 @@ public class CadastroCliente extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(0, 0, 0, 140));
         jPanel2.setForeground(new java.awt.Color(244, 244, 244));
 
-        TextName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        TextName.setAlignmentX(0.0F);
-        TextName.setBorder(null);
-        TextName.addActionListener(new java.awt.event.ActionListener() {
+        TextSenha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TextSenha.setAlignmentX(0.0F);
+        TextSenha.setBorder(null);
+        TextSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextNameActionPerformed(evt);
+                TextSenhaActionPerformed(evt);
             }
         });
 
-        TextPassword.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        TextPassword.setAlignmentX(0.0F);
-        TextPassword.setBorder(null);
-        TextPassword.addActionListener(new java.awt.event.ActionListener() {
+        TextConfirmSenha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TextConfirmSenha.setAlignmentX(0.0F);
+        TextConfirmSenha.setBorder(null);
+        TextConfirmSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextPasswordActionPerformed(evt);
+                TextConfirmSenhaActionPerformed(evt);
             }
         });
 
@@ -96,21 +108,21 @@ public class CadastroCliente extends javax.swing.JFrame {
         CriarLogin.setForeground(new java.awt.Color(255, 255, 255));
         CriarLogin.setText("Criar cadastro");
 
-        TextName1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        TextName1.setAlignmentX(0.0F);
-        TextName1.setBorder(null);
-        TextName1.addActionListener(new java.awt.event.ActionListener() {
+        TextEmail.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TextEmail.setAlignmentX(0.0F);
+        TextEmail.setBorder(null);
+        TextEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextName1ActionPerformed(evt);
+                TextEmailActionPerformed(evt);
             }
         });
 
-        TextName2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        TextName2.setAlignmentX(0.0F);
-        TextName2.setBorder(null);
-        TextName2.addActionListener(new java.awt.event.ActionListener() {
+        TextNome.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TextNome.setAlignmentX(0.0F);
+        TextNome.setBorder(null);
+        TextNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextName2ActionPerformed(evt);
+                TextNomeActionPerformed(evt);
             }
         });
 
@@ -141,10 +153,10 @@ public class CadastroCliente extends javax.swing.JFrame {
                             .addComponent(jLabel4)
                             .addComponent(jLabel3)
                             .addComponent(jLabel6)
-                            .addComponent(TextPassword)
-                            .addComponent(TextName)
-                            .addComponent(TextName1)
-                            .addComponent(TextName2, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                            .addComponent(TextConfirmSenha)
+                            .addComponent(TextSenha)
+                            .addComponent(TextEmail)
+                            .addComponent(TextNome, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                             .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(45, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
@@ -162,19 +174,19 @@ public class CadastroCliente extends javax.swing.JFrame {
                 .addGap(1, 1, 1)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TextName2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TextNome, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TextName1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TextEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(TextName, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TextSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TextPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TextConfirmSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -185,30 +197,30 @@ public class CadastroCliente extends javax.swing.JFrame {
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 290, 500));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ViewsImagens/Banner.jpg"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 580));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 350, 580));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TextNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextNameActionPerformed
+    private void TextSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextSenhaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TextNameActionPerformed
+    }//GEN-LAST:event_TextSenhaActionPerformed
 
-    private void TextPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextPasswordActionPerformed
+    private void TextConfirmSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextConfirmSenhaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TextPasswordActionPerformed
+    }//GEN-LAST:event_TextConfirmSenhaActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+         controller.salvarCliente();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void TextName1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextName1ActionPerformed
+    private void TextEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextEmailActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TextName1ActionPerformed
+    }//GEN-LAST:event_TextEmailActionPerformed
 
-    private void TextName2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextName2ActionPerformed
+    private void TextNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextNomeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TextName2ActionPerformed
+    }//GEN-LAST:event_TextNomeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -246,12 +258,46 @@ public class CadastroCliente extends javax.swing.JFrame {
         });
     }
 
+    public JTextField getTextConfirmSenha() {
+        return TextConfirmSenha;
+    }
+
+    public void setTextConfirmSenha(JTextField TextConfirmSenha) {
+        this.TextConfirmSenha = TextConfirmSenha;
+    }
+
+    public JTextField getTextEmail() {
+        return TextEmail;
+    }
+
+    public void setTextEmail(JTextField TextEmail) {
+        this.TextEmail = TextEmail;
+    }
+
+    public JTextField getTextNome() {
+        return TextNome;
+    }
+
+    public void setTextNome(JTextField TextNome) {
+        this.TextNome = TextNome;
+    }
+
+    public JTextField getTextSenha() {
+        return TextSenha;
+    }
+
+    public void setTextSenha(JTextField TextSenha) {
+        this.TextSenha = TextSenha;
+    }
+    
+    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel CriarLogin;
-    private javax.swing.JTextField TextName;
-    private javax.swing.JTextField TextName1;
-    private javax.swing.JTextField TextName2;
-    private javax.swing.JTextField TextPassword;
+    private javax.swing.JTextField TextConfirmSenha;
+    private javax.swing.JTextField TextEmail;
+    private javax.swing.JTextField TextNome;
+    private javax.swing.JTextField TextSenha;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
@@ -263,3 +309,7 @@ public class CadastroCliente extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }
+
+    
+
+
