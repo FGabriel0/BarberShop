@@ -4,15 +4,7 @@
  */
 package Views;
 import Controller.ClienteCadastroController;
-import DAO.ClienteDAO;
-import DAO.Conexao;
-import Model.Cliente;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
+
 import javax.swing.JTextField;
 /**
  *
