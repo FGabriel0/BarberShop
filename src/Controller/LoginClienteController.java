@@ -8,7 +8,7 @@ import DAO.ClienteDAO;
 import DAO.Conexao;
 import Model.Cliente;
 import Views.LoginCliente;
-import Views.MenuCliente;
+import Views.MenuBarbeiro;
 import java.sql.Connection;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -38,7 +38,7 @@ public class LoginClienteController {
        boolean existe =  clienteDAO.autenticarCliente(clienteAutenticar); 
        
        if(existe){
-         MenuCliente menucliente = new MenuCliente();
+         MenuBarbeiro menucliente = new MenuBarbeiro();
          menucliente.setVisible(true);
          this.view.dispose();
        }

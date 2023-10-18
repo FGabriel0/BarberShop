@@ -4,11 +4,25 @@
  */
 package Views;
 
+import javax.swing.JOptionPane;
+import Controller.ServicesController;
+import Utils.GerentedeImagens;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
 /**
  *
  * @author Biel
  */
 public class AddService extends javax.swing.JFrame {
+    
+    GerentedeImagens gerentedeImagens = new GerentedeImagens();
+    private ServicesController controller;
+
+    public AddService(ServicesController controller) {
+        this.controller = controller;
+    }
+    
 
     /**
      * Creates new form AddService
@@ -33,6 +47,7 @@ public class AddService extends javax.swing.JFrame {
         VarNameService = new javax.swing.JTextField();
         VarPriceService = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        ImagemDeService = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
@@ -71,34 +86,58 @@ public class AddService extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(51, 153, 0));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Salvar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        ImagemDeService.setBackground(new java.awt.Color(255, 255, 255));
+        ImagemDeService.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        ImagemDeService.setForeground(new java.awt.Color(255, 255, 255));
+        ImagemDeService.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ViewsImagens/service.jpg"))); // NOI18N
+        ImagemDeService.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204), 2));
+        ImagemDeService.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ImagemDeService.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ImagemDeServiceMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(55, 55, 55)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(VarNameService, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
-                    .addComponent(VarPriceService)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel4))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(58, 58, 58))
+                            .addComponent(VarNameService, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
+                            .addComponent(VarPriceService)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(82, 82, 82)
+                                .addComponent(ImagemDeService, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(58, 58, 58))))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(154, 154, 154)
+                .addGap(157, 157, 157)
                 .addComponent(jLabel3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(13, 13, 13)
                 .addComponent(jLabel3)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ImagemDeService, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(VarNameService, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -106,9 +145,9 @@ public class AddService extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(VarPriceService, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(jButton1)
-                .addContainerGap(241, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(152, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 480));
@@ -146,6 +185,18 @@ public class AddService extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_VarPriceServiceActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        controller.salvarServico();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void ImagemDeServiceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ImagemDeServiceMouseClicked
+        // TODO add your handling code here:
+        if(evt.getClickCount() == 2){
+            gerentedeImagens.escolherImagem(ImagemDeService);
+        }
+    }//GEN-LAST:event_ImagemDeServiceMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -182,6 +233,7 @@ public class AddService extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel ImagemDeService;
     private javax.swing.JTextField VarNameService;
     private javax.swing.JTextField VarPriceService;
     private javax.swing.JButton jButton1;
@@ -194,4 +246,30 @@ public class AddService extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
+
+
+    public JLabel getImagemDeService() {
+        return ImagemDeService;
+    }
+
+    public void setImagemDeService(JLabel ImagemDeService) {
+        this.ImagemDeService = ImagemDeService;
+    }
+
+    public JTextField getVarNameService() {
+        return VarNameService;
+    }
+
+    public void setVarNameService(JTextField VarNameService) {
+        this.VarNameService = VarNameService;
+    }
+
+    public JTextField getVarPriceService() {
+        return VarPriceService;
+    }
+
+    public void setVarPriceService(JTextField VarPriceService) {
+        this.VarPriceService = VarPriceService;
+    }
+    
 }

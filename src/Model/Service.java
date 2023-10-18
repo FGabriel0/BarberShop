@@ -10,18 +10,32 @@ package Model;
  */
 public class Service {
     private Long id;
+    private String imagem;
     private String nome;
-    private double price;
+    private String price;
 
-    public Service(Long id, String nome, double price) {
+    public Service(Long id, String imagem, String nome, String price) {
         this.id = id;
+        this.imagem = imagem;
         this.nome = nome;
         this.price = price;
     }
 
-    public Service(String nome, double price) {
+    public Service(String imagem, String nome, String price) {
+        this.imagem = imagem;
         this.nome = nome;
         this.price = price;
+    }
+
+    public Service(Long id, String nome, String price) {
+        this.id = id;
+        this.nome = nome;
+        this.price = price;
+    }
+    
+
+    public Service(String nome) {
+        this.nome = nome;
     }
 
     public Long getId() {
@@ -32,6 +46,14 @@ public class Service {
         this.id = id;
     }
 
+    public String getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
+    }
+
     public String getNome() {
         return nome;
     }
@@ -40,13 +62,14 @@ public class Service {
         this.nome = nome;
     }
 
-    public double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
+
     
     
     
