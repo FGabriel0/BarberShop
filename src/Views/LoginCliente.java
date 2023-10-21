@@ -4,29 +4,36 @@
  */
 package Views;
 
-import Controller.LoginClienteController;
+import Controller.ClienteController;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-
+import Views.MenuCliente;
 /**
  *
  * @author Biel
  */
 public class LoginCliente extends javax.swing.JFrame {
 
-    private final LoginClienteController controller;
-    
+    private final ClienteController controller;
+    private LoginCliente views;
 
     /**
      * Creates new form Login
      */
     public LoginCliente() {
         initComponents();
-        controller = new LoginClienteController(this);
+        controller = new ClienteController(this);
     }
+
+    public LoginCliente(ClienteController controller, LoginCliente views) {
+        this.controller = controller;
+        this.views = views;
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -45,6 +52,8 @@ public class LoginCliente extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         TextPassword = new javax.swing.JPasswordField();
+        Cadastrar = new javax.swing.JLabel();
+        EsqueceuSenha = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -87,11 +96,31 @@ public class LoginCliente extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Entrar como Barbeiro");
+        jLabel9.setText("Entrar como Cliente");
 
         TextPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TextPasswordActionPerformed(evt);
+            }
+        });
+
+        Cadastrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        Cadastrar.setForeground(new java.awt.Color(255, 255, 255));
+        Cadastrar.setText("Cadastrar");
+        Cadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Cadastrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CadastrarMouseClicked(evt);
+            }
+        });
+
+        EsqueceuSenha.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        EsqueceuSenha.setForeground(new java.awt.Color(255, 255, 255));
+        EsqueceuSenha.setText("Esqueceu a Senha?");
+        EsqueceuSenha.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        EsqueceuSenha.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                EsqueceuSenhaMouseClicked(evt);
             }
         });
 
@@ -110,6 +139,10 @@ public class LoginCliente extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(45, 45, 45)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(EsqueceuSenha)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Cadastrar))
                             .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4)
@@ -134,7 +167,11 @@ public class LoginCliente extends javax.swing.JFrame {
                 .addComponent(TextPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Cadastrar)
+                    .addComponent(EsqueceuSenha))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 290, 420));
@@ -161,6 +198,17 @@ public class LoginCliente extends javax.swing.JFrame {
     private void TextPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextPasswordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TextPasswordActionPerformed
+
+    private void EsqueceuSenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EsqueceuSenhaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EsqueceuSenhaMouseClicked
+
+    private void CadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CadastrarMouseClicked
+        // TODO add your handling code here:
+         CadastroCliente Cadastrocliente = new CadastroCliente();
+         Cadastrocliente.setVisible(true);
+         this.views.dispose();
+    }//GEN-LAST:event_CadastrarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -218,6 +266,8 @@ public class LoginCliente extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Cadastrar;
+    private javax.swing.JLabel EsqueceuSenha;
     private javax.swing.JTextField TextName;
     private javax.swing.JPasswordField TextPassword;
     private javax.swing.JButton jButton2;

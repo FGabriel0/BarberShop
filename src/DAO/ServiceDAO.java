@@ -85,10 +85,12 @@ public class ServiceDAO {
                 
         while(resultSet.next()){
             int id = resultSet.getInt("id");
-            String nome = resultSet.getString("nome");
-            double price = resultSet.getDouble("price");
             
-            Service serviceEncontrado = new Service(Long.MIN_VALUE, nome, nome);
+            String imagem = resultSet.getString("imagem");
+            String nome = resultSet.getString("nome");
+            String price = resultSet.getString("price");
+            
+            Service serviceEncontrado = new Service(Long.MIN_VALUE, imagem, nome, price);
             services.add(serviceEncontrado);
                  
         }
@@ -96,7 +98,7 @@ public class ServiceDAO {
     }
     
     public Service BuscarPorId(Service services) throws SQLException{
-        String sql = "select from service where id = ? ";
+        String sql = "select from services where id = ? ";
         
         PreparedStatement prepareStatement = connection.prepareStatement(sql);
         prepareStatement.setLong(1, services.getId());

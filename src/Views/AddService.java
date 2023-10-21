@@ -6,7 +6,13 @@ package Views;
 
 import javax.swing.JOptionPane;
 import Controller.ServicesController;
-import Utils.GerentedeImagens;
+import java.awt.Image;
+import java.io.File;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
@@ -16,8 +22,7 @@ import javax.swing.JTextField;
  */
 public class AddService extends javax.swing.JFrame {
     
-    GerentedeImagens gerentedeImagens = new GerentedeImagens();
-    private ServicesController controller;
+    private final ServicesController controller;
 
     public AddService(ServicesController controller) {
         this.controller = controller;
@@ -29,6 +34,7 @@ public class AddService extends javax.swing.JFrame {
      */
     public AddService() {
         initComponents();
+        controller = new ServicesController(this);
     }
 
     /**
@@ -48,6 +54,7 @@ public class AddService extends javax.swing.JFrame {
         VarPriceService = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         ImagemDeService = new javax.swing.JLabel();
+        TfCaminho = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
@@ -104,40 +111,51 @@ public class AddService extends javax.swing.JFrame {
             }
         });
 
+        TfCaminho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TfCaminhoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(158, 158, 158)
+                        .addComponent(jLabel3))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(175, 175, 175)
+                        .addComponent(ImagemDeService)))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(55, 55, 55)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(VarNameService, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
-                            .addComponent(VarPriceService)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(TfCaminho, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(VarNameService)
+                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
+                            .addComponent(VarPriceService, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
-                                .addGap(82, 82, 82)
-                                .addComponent(ImagemDeService, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(58, 58, 58))))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(157, 157, 157)
-                .addComponent(jLabel3)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(13, 13, 13)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ImagemDeService, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(TfCaminho, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(VarNameService, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -147,7 +165,7 @@ public class AddService extends javax.swing.JFrame {
                 .addComponent(VarPriceService, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(152, Short.MAX_VALUE))
+                .addContainerGap(146, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 480));
@@ -174,7 +192,14 @@ public class AddService extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            TelaService menu = new TelaService();
+            menu.setVisible(true);
+            setVisible(false);
+        } catch (SQLException ex) {
+            Logger.getLogger(AddService.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void VarNameServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VarNameServiceActionPerformed
@@ -192,10 +217,24 @@ public class AddService extends javax.swing.JFrame {
 
     private void ImagemDeServiceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ImagemDeServiceMouseClicked
         // TODO add your handling code here:
-        if(evt.getClickCount() == 2){
-            gerentedeImagens.escolherImagem(ImagemDeService);
+        JFileChooser arquivo = new JFileChooser();
+        arquivo.setDialogTitle("Selecione uma Imagem");
+        arquivo.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        int op = arquivo.showOpenDialog(this);
+        if(op == JFileChooser.APPROVE_OPTION){
+            File file = new File("");
+            file  = arquivo.getSelectedFile();
+            String fileName =  file.getAbsolutePath();//Pegar o Caminho Absoluta da Imagem
+            TfCaminho.setText(fileName);
+            ImageIcon  imagem= new ImageIcon(file.getPath());//Pegar o caminho da maquina
+            ImagemDeService.setIcon(new ImageIcon(imagem.getImage().getScaledInstance(ImagemDeService.getWidth(), ImagemDeService.getHeight(),Image.SCALE_DEFAULT)));
+                    
         }
     }//GEN-LAST:event_ImagemDeServiceMouseClicked
+
+    private void TfCaminhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TfCaminhoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TfCaminhoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -234,6 +273,7 @@ public class AddService extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ImagemDeService;
+    private javax.swing.JTextField TfCaminho;
     private javax.swing.JTextField VarNameService;
     private javax.swing.JTextField VarPriceService;
     private javax.swing.JButton jButton1;
@@ -271,5 +311,14 @@ public class AddService extends javax.swing.JFrame {
     public void setVarPriceService(JTextField VarPriceService) {
         this.VarPriceService = VarPriceService;
     }
+
+    public JTextField getTfCaminho() {
+        return TfCaminho;
+    }
+
+    public void setTfCaminho(JTextField TfCaminho) {
+        this.TfCaminho = TfCaminho;
+    }
+    
     
 }

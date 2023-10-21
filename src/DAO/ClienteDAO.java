@@ -24,11 +24,12 @@ public class ClienteDAO {
     
     public void Salvar(Cliente clientes) throws SQLException{
               
-        String sql = "insert into clientes(nome,email,senha) values(? , ?)";
+        String sql = "insert into clientes(nome,email,senha) values(? , ?, ?)";
         
         PreparedStatement prepareStatement = connection.prepareStatement(sql);
         prepareStatement.setString(1, clientes.getNome());
-        prepareStatement.setString(2, clientes.getSenha());
+        prepareStatement.setString(2, clientes.getEmail());
+        prepareStatement.setString(3, clientes.getSenha());
         prepareStatement.execute();       
         connection.close();
         

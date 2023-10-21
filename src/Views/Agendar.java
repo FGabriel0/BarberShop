@@ -4,17 +4,35 @@
  */
 package Views;
 
+import Controller.AgendamentoController;
+import Controller.ServicesController;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
 /**
  *
  * @author Biel
  */
 public class Agendar extends javax.swing.JFrame {
 
+    private AgendamentoController controller;
+
+    public Agendar(AgendamentoController controller) {
+        this.controller = controller;
+    }
+
+    
     /**
      * Creates new form Agendar
      */
     public Agendar() {
         initComponents();
+        controller = new AgendamentoController(this);
     }
 
     /**
@@ -30,23 +48,28 @@ public class Agendar extends javax.swing.JFrame {
         TextName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
-        VarFone = new javax.swing.JLabel();
-        VarData = new javax.swing.JLabel();
-        TextData = new javax.swing.JTextField();
-        TextHorario = new javax.swing.JTextField();
-        VarHorario = new javax.swing.JLabel();
-        ComboBoxService = new javax.swing.JComboBox<>();
-        VarServico = new javax.swing.JLabel();
-        VarTelefone = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
+        labelemail = new javax.swing.JLabel();
+        VarEmail = new javax.swing.JTextField();
         VarName = new javax.swing.JTextField();
+        label = new javax.swing.JLabel();
+        labelhorario = new javax.swing.JLabel();
+        VarPrice = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        VarTelefone = new javax.swing.JTextField();
+        labelservice = new javax.swing.JLabel();
+        ComboBoxService = new javax.swing.JComboBox();
+        jLabel2 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        VarCorte = new javax.swing.JLabel();
+        labelhorario1 = new javax.swing.JLabel();
+        VarHora = new javax.swing.JComboBox();
+        VarData = new javax.swing.JComboBox();
+        jLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        VarName1 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        VarObeservacao = new javax.swing.JTextArea();
+        jButton2 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
 
@@ -73,80 +96,23 @@ public class Agendar extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Telefone");
 
-        jButton2.setBackground(new java.awt.Color(51, 153, 0));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Agendar");
-        jButton2.setBorder(null);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton2.setMaximumSize(new java.awt.Dimension(32, 16));
-        jButton2.setMinimumSize(new java.awt.Dimension(32, 16));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("JP BARBEARIA");
 
-        VarFone.setBackground(new java.awt.Color(255, 255, 255));
-        VarFone.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        VarFone.setForeground(new java.awt.Color(255, 255, 255));
-        VarFone.setText("Email");
+        labelemail.setBackground(new java.awt.Color(255, 255, 255));
+        labelemail.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        labelemail.setForeground(new java.awt.Color(255, 255, 255));
+        labelemail.setText("Email");
 
-        VarData.setBackground(new java.awt.Color(255, 255, 255));
-        VarData.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        VarData.setForeground(new java.awt.Color(255, 255, 255));
-        VarData.setText("Data:");
-
-        TextData.setForeground(new java.awt.Color(255, 255, 255));
-        TextData.addActionListener(new java.awt.event.ActionListener() {
+        VarEmail.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        VarEmail.setAlignmentX(0.0F);
+        VarEmail.setBorder(null);
+        VarEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextDataActionPerformed(evt);
+                VarEmailActionPerformed(evt);
             }
         });
-
-        TextHorario.setEditable(false);
-        TextHorario.setBackground(new java.awt.Color(255, 255, 255));
-        TextHorario.setForeground(new java.awt.Color(0, 0, 0));
-        TextHorario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextHorarioActionPerformed(evt);
-            }
-        });
-
-        VarHorario.setBackground(new java.awt.Color(255, 255, 255));
-        VarHorario.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        VarHorario.setForeground(new java.awt.Color(255, 255, 255));
-        VarHorario.setText("Horario:");
-
-        ComboBoxService.setForeground(new java.awt.Color(255, 255, 255));
-        ComboBoxService.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Social", "Sufista", "Narvalhado", " " }));
-        ComboBoxService.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ComboBoxServiceActionPerformed(evt);
-            }
-        });
-
-        VarServico.setBackground(new java.awt.Color(255, 255, 255));
-        VarServico.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        VarServico.setForeground(new java.awt.Color(255, 255, 255));
-        VarServico.setText("Serviço:");
-
-        VarTelefone.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        VarTelefone.setAlignmentX(0.0F);
-        VarTelefone.setBorder(null);
-        VarTelefone.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                VarTelefoneActionPerformed(evt);
-            }
-        });
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Telefone");
 
         VarName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         VarName.setAlignmentX(0.0F);
@@ -157,20 +123,114 @@ public class Agendar extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Observação");
+        label.setBackground(new java.awt.Color(255, 255, 255));
+        label.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        label.setForeground(new java.awt.Color(255, 255, 255));
+        label.setText("Data:");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        labelhorario.setBackground(new java.awt.Color(255, 255, 255));
+        labelhorario.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        labelhorario.setForeground(new java.awt.Color(255, 255, 255));
+        labelhorario.setText("Horario:");
 
-        VarName1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        VarName1.setAlignmentX(0.0F);
-        VarName1.setBorder(null);
-        VarName1.addActionListener(new java.awt.event.ActionListener() {
+        VarPrice.setEditable(false);
+        VarPrice.setBackground(new java.awt.Color(255, 255, 255));
+        VarPrice.setForeground(new java.awt.Color(0, 0, 0));
+        VarPrice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                VarName1ActionPerformed(evt);
+                VarPriceActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Telefone");
+
+        VarTelefone.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        VarTelefone.setAlignmentX(0.0F);
+        VarTelefone.setBorder(null);
+        VarTelefone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VarTelefoneActionPerformed(evt);
+            }
+        });
+
+        labelservice.setBackground(new java.awt.Color(255, 255, 255));
+        labelservice.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        labelservice.setForeground(new java.awt.Color(255, 255, 255));
+        labelservice.setText("Serviço:");
+
+        ComboBoxService.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        ComboBoxService.setForeground(new java.awt.Color(255, 255, 255));
+        ComboBoxService.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione..." }));
+        ComboBoxService.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                ComboBoxServiceAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        ComboBoxService.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboBoxServiceActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Selecione o Serviço Para Ver o Exemplo:");
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(VarCorte, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(VarCorte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        labelhorario1.setBackground(new java.awt.Color(255, 255, 255));
+        labelhorario1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        labelhorario1.setForeground(new java.awt.Color(255, 255, 255));
+        labelhorario1.setText("Preço:");
+
+        VarHora.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        VarHora.setForeground(new java.awt.Color(255, 255, 255));
+        VarHora.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione a Hora..." }));
+        VarHora.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                VarHoraAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+
+        VarData.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        VarData.setForeground(new java.awt.Color(255, 255, 255));
+        VarData.setMaximumRowCount(20);
+        VarData.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione o Dia..." }));
+        VarData.setToolTipText("");
+        VarData.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                VarDataAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
 
@@ -181,50 +241,56 @@ public class Agendar extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(155, 155, 155)
+                        .addComponent(jLabel9))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(15, 15, 15)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addGap(178, 178, 178)
-                                        .addComponent(VarFone, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                        .addGap(8, 8, 8)
-                                        .addComponent(jLabel6)))
-                                .addGap(279, 279, 279)
-                                .addComponent(TextName, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(399, 399, 399)
-                                .addComponent(jLabel4))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(ComboBoxService, javax.swing.GroupLayout.Alignment.LEADING, 0, 185, Short.MAX_VALUE)
-                                        .addComponent(VarTelefone, javax.swing.GroupLayout.Alignment.LEADING))
-                                    .addComponent(jLabel5)
-                                    .addComponent(VarServico, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(26, 26, 26)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(VarData, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(VarHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(VarName, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
-                                    .addComponent(TextData)
-                                    .addComponent(TextHorario)))
+                                    .addComponent(VarName, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(label, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel3)))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(35, 35, 35)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(labelemail, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(VarEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(251, 251, 251)
+                                        .addComponent(TextName, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(399, 399, 399)
+                                        .addComponent(jLabel4))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(37, 37, 37)
+                                        .addComponent(labelhorario, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLabel2)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(155, 155, 155)
-                        .addComponent(jLabel9)))
+                                .addGap(22, 22, 22)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(40, 40, 40)
+                                        .addComponent(labelhorario1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(30, 30, 30)
+                                        .addComponent(VarPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addComponent(VarData, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGap(37, 37, 37)
+                                    .addComponent(VarHora, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(VarTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel5))
+                                    .addGap(37, 37, 37)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(labelservice, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(ComboBoxService, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(25, 25, 25)
-                    .addComponent(VarName1)
-                    .addGap(1167, 1167, 1167)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -240,49 +306,73 @@ public class Agendar extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(VarFone, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(VarName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(47, 47, 47)))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(VarData, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(TextData, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(VarTelefone)
-                                .addGap(4, 4, 4)))
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(VarServico)
-                            .addComponent(VarHorario))
+                            .addComponent(labelemail, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ComboBoxService, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TextHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel6)
+                            .addComponent(VarEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(VarName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(3, 3, 3)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(label, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelhorario))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(53, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(72, 72, 72)
-                    .addComponent(VarName1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(368, Short.MAX_VALUE)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(VarHora, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                    .addComponent(VarData))
+                .addGap(12, 12, 12)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(labelservice))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(VarTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ComboBoxService, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(12, 12, 12))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(labelhorario1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(VarPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(69, Short.MAX_VALUE))))
         );
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 480));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ViewsImagens/MenuBar.jpg"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 490));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 490));
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Observação");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 40, -1, -1));
+
+        VarObeservacao.setColumns(20);
+        VarObeservacao.setRows(5);
+        jScrollPane1.setViewportView(VarObeservacao);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 70, 428, 210));
+
+        jButton2.setBackground(new java.awt.Color(51, 153, 0));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("Agendar");
+        jButton2.setBorder(null);
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton2.setMaximumSize(new java.awt.Dimension(32, 16));
+        jButton2.setMinimumSize(new java.awt.Dimension(32, 16));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 310, 320, 31));
 
         jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
         jMenuBar1.setForeground(new java.awt.Color(0, 0, 0));
@@ -302,32 +392,53 @@ public class Agendar extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
             // TODO add your handling code here:
+            controller.salvarAgendamento();
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void TextDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextDataActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TextDataActionPerformed
-
-    private void TextHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextHorarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TextHorarioActionPerformed
-
     private void ComboBoxServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxServiceActionPerformed
         // TODO add your handling code here:
+  
     }//GEN-LAST:event_ComboBoxServiceActionPerformed
 
     private void VarTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VarTelefoneActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_VarTelefoneActionPerformed
 
+    private void VarEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VarEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_VarEmailActionPerformed
+
     private void VarNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VarNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_VarNameActionPerformed
 
-    private void VarName1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VarName1ActionPerformed
+    private void VarPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VarPriceActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_VarName1ActionPerformed
+    }//GEN-LAST:event_VarPriceActionPerformed
+
+    private void ComboBoxServiceAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_ComboBoxServiceAncestorAdded
+        try {
+            // TODO add your handling code here:
+            controller.ComboboxService();
+        } catch (SQLException ex) {
+            Logger.getLogger(Agendar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_ComboBoxServiceAncestorAdded
+
+    private void VarHoraAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_VarHoraAncestorAdded
+        try {
+            // TODO add your handling code here:
+            controller.AdicionandoHoras();
+        } catch (SQLException ex) {
+            Logger.getLogger(Agendar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_VarHoraAncestorAdded
+
+    private void VarDataAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_VarDataAncestorAdded
+        // TODO add your handling code here:
+        controller.AdicionandoData();
+    }//GEN-LAST:event_VarDataAncestorAdded
 
     /**
      * @param args the command line arguments
@@ -364,20 +475,97 @@ public class Agendar extends javax.swing.JFrame {
         });
     }
 
+    public JComboBox<String> getComboBoxService() {
+        return ComboBoxService;
+    }
+
+    public void setComboBoxService(JComboBox<String> ComboBoxService) {
+        this.ComboBoxService = ComboBoxService;
+    }
+
+    public JLabel getVarCorte() {
+        return VarCorte;
+    }
+
+    public void setVarCorte(JLabel VarCorte) {
+        this.VarCorte = VarCorte;
+    }
+
+   
+    public JTextField getVarEmail() {
+        return VarEmail;
+    }
+
+    public void setVarEmail(JTextField VarEmail) {
+        this.VarEmail = VarEmail;
+    }
+
+    public JComboBox getVarData() {
+        return VarData;
+    }
+
+    public void setVarData(JComboBox VarData) {
+        this.VarData = VarData;
+    }
+    
+
+    public JComboBox<String> getVarHora() {
+        return VarHora;
+    }
+
+    public void setVarHora(JComboBox<String> VarHora) {
+        this.VarHora = VarHora;
+    }
+
+    public JTextField getVarTelefone() {
+        return VarTelefone;
+    }
+
+    public void setVarTelefone(JTextField VarTelefone) {
+        this.VarTelefone = VarTelefone;
+    }
+
+   
+    public JTextField getVarName() {
+        return VarName;
+    }
+
+    public void setVarName(JTextField VarName) {
+        this.VarName = VarName;
+    }
+
+    public JTextArea getVarObeservacao() {
+        return VarObeservacao;
+    }
+
+    public void setVarObeservacao(JTextArea VarObeservacao) {
+        this.VarObeservacao = VarObeservacao;
+    }
+
+    public JTextField getVarPrice() {
+        return VarPrice;
+    }
+
+    public void setVarPrice(JTextField VarPrice) {
+        this.VarPrice = VarPrice;
+    }
+    
+    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> ComboBoxService;
-    private javax.swing.JTextField TextData;
-    private javax.swing.JTextField TextHorario;
+    private javax.swing.JComboBox ComboBoxService;
     private javax.swing.JTextField TextName;
-    private javax.swing.JLabel VarData;
-    private javax.swing.JLabel VarFone;
-    private javax.swing.JLabel VarHorario;
+    private javax.swing.JLabel VarCorte;
+    private javax.swing.JComboBox VarData;
+    private javax.swing.JTextField VarEmail;
+    private javax.swing.JComboBox VarHora;
     private javax.swing.JTextField VarName;
-    private javax.swing.JTextField VarName1;
-    private javax.swing.JLabel VarServico;
+    private javax.swing.JTextArea VarObeservacao;
+    private javax.swing.JTextField VarPrice;
     private javax.swing.JTextField VarTelefone;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -385,8 +573,14 @@ public class Agendar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel label;
+    private javax.swing.JLabel labelemail;
+    private javax.swing.JLabel labelhorario;
+    private javax.swing.JLabel labelhorario1;
+    private javax.swing.JLabel labelservice;
     // End of variables declaration//GEN-END:variables
 }
+

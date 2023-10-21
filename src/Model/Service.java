@@ -8,6 +8,7 @@ package Model;
  *
  * @author Biel
  */
+
 public class Service {
     private Long id;
     private String imagem;
@@ -68,6 +69,11 @@ public class Service {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "Service{" + "nome=" + nome + '}';
     }
 
     

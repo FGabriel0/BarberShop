@@ -12,14 +12,15 @@ public class Agendamento {
     
     private Long id;
     private String nome;
+    private String email;
     private String telefone;
     private String servico_id;
-    private float price_agendamento;
+    private String price_agendamento;
     private String data;
     private String hora;
     private String observacao;
 
-    public Agendamento(Long id, String nome, String telefone, String servico_id, float price_agendamento, String data, String hora) {
+    public Agendamento(Long id, String nome, String telefone, String servico_id, String price_agendamento, String data, String hora, String observacao) {
         this.id = id;
         this.nome = nome;
         this.telefone = telefone;
@@ -30,22 +31,19 @@ public class Agendamento {
         this.observacao = observacao;
     }
 
-    public String getObservacao() {
-        return observacao;
-    }
-
-    public void setObservacao(String observacao) {
-        this.observacao = observacao;
-    }
-
-    public Agendamento(String nome, String telefone, String servico_id, String data, String hora,String observacao) {
+    public Agendamento(String nome, String email, String telefone, String servico_id, String price_agendamento, String data, String hora, String observacao) {
         this.nome = nome;
+        this.email = email;
         this.telefone = telefone;
         this.servico_id = servico_id;
+        this.price_agendamento = price_agendamento;
         this.data = data;
         this.hora = hora;
         this.observacao = observacao;
     }
+
+    
+   
 
     public String getTelefone() {
         return telefone;
@@ -80,11 +78,11 @@ public class Agendamento {
         this.servico_id = servico_id;
     }
 
-    public float getPrice_agendamento() {
+    public String getPrice_agendamento() {
         return price_agendamento;
     }
 
-    public void setPrice_agendamento(float price_agendamento) {
+    public void setPrice_agendamento(String price_agendamento) {
         this.price_agendamento = price_agendamento;
     }
 
@@ -103,6 +101,22 @@ public class Agendamento {
     public void setHora(String hora) {
         this.hora = hora;
     }
+    public String getObservacao() {
+        return observacao;
+    }
+
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
     
     
     

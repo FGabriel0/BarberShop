@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Views;
-import Controller.ClienteCadastroController;
+import Controller.ClienteController;
 
 import javax.swing.JTextField;
 /**
@@ -11,14 +11,14 @@ import javax.swing.JTextField;
  * @author guilh
  */
 public class CadastroCliente extends javax.swing.JFrame {
-    private final ClienteCadastroController controller;
+    private final ClienteController controller;
 
     /**
      * Creates new form NewJFrame
      */
     public CadastroCliente() {
         initComponents();
-        controller = new ClienteCadastroController(this);
+        controller = new ClienteController(this);
     }
 
     /**
