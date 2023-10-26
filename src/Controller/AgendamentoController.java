@@ -66,8 +66,8 @@ public class AgendamentoController {
                             view.getVarPrice().setText(service.getPrice());
                             
                             ImageIcon imagem = new ImageIcon(service.getImagem());
-                            view.getVarCorte().setIcon(new ImageIcon(imagem.getImage().getScaledInstance(view.getVarCorte().getWidth()
-                  , view.getVarCorte().getHeight(), Image.SCALE_DEFAULT)));
+                            view.getImagemCorte().setIcon(new ImageIcon(imagem.getImage().getScaledInstance(view.getImagemCorte().getWidth()
+                  , view.getImagemCorte().getHeight(), Image.SCALE_DEFAULT)));
                             break; 
                         }
                     }
