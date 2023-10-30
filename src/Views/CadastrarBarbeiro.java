@@ -110,7 +110,7 @@ public class CadastrarBarbeiro extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Email:");
+        jLabel3.setText("E-mail:");
 
         TextEmail.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         TextEmail.setAlignmentX(0.0F);
