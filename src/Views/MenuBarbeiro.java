@@ -8,6 +8,7 @@ import Controller.BarbeiroController;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
 import javax.swing.JTable;
 
 /**
@@ -34,7 +35,10 @@ public class MenuBarbeiro extends javax.swing.JFrame {
      private void iniciarTable() throws SQLException {
          controller.atualizarTabelaAgendamento();
     }
+     
+   
 
+ 
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -47,6 +51,8 @@ public class MenuBarbeiro extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         TableAgendamentos = new javax.swing.JTable();
         TodosAgendamentos = new javax.swing.JButton();
+        AgendamentoHistorico = new javax.swing.JButton();
+        Welcome = new javax.swing.JLabel();
         AgendamentoHoje = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -74,17 +80,31 @@ public class MenuBarbeiro extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(TableAgendamentos);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 910, 330));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 910, 330));
 
         TodosAgendamentos.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         TodosAgendamentos.setForeground(new java.awt.Color(255, 255, 255));
-        TodosAgendamentos.setText("Todos");
+        TodosAgendamentos.setText("Em Dia");
         TodosAgendamentos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TodosAgendamentosActionPerformed(evt);
             }
         });
-        getContentPane().add(TodosAgendamentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 52, 70, 30));
+        getContentPane().add(TodosAgendamentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, 70, 30));
+
+        AgendamentoHistorico.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        AgendamentoHistorico.setForeground(new java.awt.Color(255, 255, 255));
+        AgendamentoHistorico.setText("Historico");
+        AgendamentoHistorico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AgendamentoHistoricoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(AgendamentoHistorico, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 70, -1, 30));
+
+        Welcome.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        Welcome.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(Welcome, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 290, 30));
 
         AgendamentoHoje.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         AgendamentoHoje.setForeground(new java.awt.Color(255, 255, 255));
@@ -94,15 +114,15 @@ public class MenuBarbeiro extends javax.swing.JFrame {
                 AgendamentoHojeActionPerformed(evt);
             }
         });
-        getContentPane().add(AgendamentoHoje, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 52, -1, 30));
+        getContentPane().add(AgendamentoHoje, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 70, -1, 30));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Agendamentos");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ViewsImagens/BannerPC.jpg"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1130, 490));
 
         jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
         jMenuBar1.setForeground(new java.awt.Color(0, 0, 0));
@@ -190,6 +210,15 @@ public class MenuBarbeiro extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_AgendamentoHojeActionPerformed
 
+    private void AgendamentoHistoricoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgendamentoHistoricoActionPerformed
+        try {
+            // TODO add your handling code here:
+            controller.atualizarHistoricodaTabela();
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuBarbeiro.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_AgendamentoHistoricoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -236,11 +265,20 @@ public class MenuBarbeiro extends javax.swing.JFrame {
     public void setTableAgendamentos(JTable TableAgendamentos) {
         this.TableAgendamentos = TableAgendamentos;
     }
+     public JLabel getWelcome() {
+        return Welcome;
+    }
+
+    public void setWelcome(JLabel Welcome) {
+        this.Welcome = Welcome;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AgendamentoHistorico;
     private javax.swing.JButton AgendamentoHoje;
     private javax.swing.JTable TableAgendamentos;
     private javax.swing.JButton TodosAgendamentos;
+    private javax.swing.JLabel Welcome;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu2;

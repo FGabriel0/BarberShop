@@ -10,7 +10,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import Views.MenuCliente;
 /**
  *
  * @author Biel
@@ -55,6 +54,7 @@ public class LoginCliente extends javax.swing.JFrame {
         Cadastrar = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
+        EntrarBarbeiro = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -144,6 +144,16 @@ public class LoginCliente extends javax.swing.JFrame {
                 .addContainerGap(55, Short.MAX_VALUE))
         );
 
+        EntrarBarbeiro.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        EntrarBarbeiro.setForeground(new java.awt.Color(255, 255, 255));
+        EntrarBarbeiro.setText("Entrar Como Barbeiro");
+        EntrarBarbeiro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        EntrarBarbeiro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                EntrarBarbeiroMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -151,10 +161,9 @@ public class LoginCliente extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(EsqueceuSenha)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabel3)
                                 .addComponent(TextName, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
@@ -163,11 +172,19 @@ public class LoginCliente extends javax.swing.JFrame {
                                 .addComponent(TextPassword))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(Cadastrar)
-                                .addGap(21, 21, 21)))
+                                .addGap(21, 21, 21))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(EsqueceuSenha)
+                                .addGap(54, 54, 54)))
                         .addGap(63, 63, 63))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(76, 76, 76)
-                        .addComponent(jLabel9)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(76, 76, 76)
+                                .addComponent(jLabel9))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(99, 99, 99)
+                                .addComponent(EntrarBarbeiro)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -183,12 +200,14 @@ public class LoginCliente extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(TextPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(EsqueceuSenha)
-                .addGap(10, 10, 10)
+                .addGap(16, 16, 16)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Cadastrar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(EntrarBarbeiro)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -225,8 +244,15 @@ public class LoginCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
          CadastroCliente Cadastrocliente = new CadastroCliente();
          Cadastrocliente.setVisible(true);
-         this.views.dispose();
+         setVisible(false);
     }//GEN-LAST:event_CadastrarMouseClicked
+
+    private void EntrarBarbeiroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EntrarBarbeiroMouseClicked
+        // TODO add your handling code here:
+        LoginBarbeiro barbeiro = new LoginBarbeiro();
+        barbeiro.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_EntrarBarbeiroMouseClicked
 
     /**
      * @param args the command line arguments
@@ -285,6 +311,7 @@ public class LoginCliente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Cadastrar;
+    private javax.swing.JLabel EntrarBarbeiro;
     private javax.swing.JLabel EsqueceuSenha;
     private javax.swing.JTextField TextName;
     private javax.swing.JPasswordField TextPassword;

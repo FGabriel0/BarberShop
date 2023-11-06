@@ -12,7 +12,14 @@ import javax.swing.JTextField;
  */
 public class CadastroCliente extends javax.swing.JFrame {
     private final ClienteController controller;
+    private LoginCliente views;
 
+    public CadastroCliente(ClienteController controller, LoginCliente views) {
+        this.controller = controller;
+        this.views = views;
+    }
+
+    
     /**
      * Creates new form NewJFrame
      */
@@ -32,7 +39,6 @@ public class CadastroCliente extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         CriarLogin = new javax.swing.JLabel();
         TextEmail = new javax.swing.JTextField();
@@ -44,7 +50,7 @@ public class CadastroCliente extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         TextConfirmSenha = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        RotaCliente = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -55,10 +61,6 @@ public class CadastroCliente extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Email:");
-
-        jLabel8.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Entrar como Barbeiro");
 
         jButton2.setBackground(new java.awt.Color(0, 153, 0));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -76,7 +78,7 @@ public class CadastroCliente extends javax.swing.JFrame {
 
         CriarLogin.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         CriarLogin.setForeground(new java.awt.Color(255, 255, 255));
-        CriarLogin.setText("Criar cadastro");
+        CriarLogin.setText("Ser Novo Cliente");
 
         TextEmail.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         TextEmail.setAlignmentX(0.0F);
@@ -147,8 +149,14 @@ public class CadastroCliente extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Confirmar senha:");
 
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Entrar como cliente");
+        RotaCliente.setForeground(new java.awt.Color(255, 255, 255));
+        RotaCliente.setText("Entrar como cliente");
+        RotaCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        RotaCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                RotaClienteMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -162,7 +170,7 @@ public class CadastroCliente extends javax.swing.JFrame {
                         .addComponent(CriarLogin))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(60, 60, 60)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -177,9 +185,8 @@ public class CadastroCliente extends javax.swing.JFrame {
                                     .addComponent(jLabel5)
                                     .addComponent(TextConfirmSenha)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel8)))))
+                                .addComponent(RotaCliente)
+                                .addGap(183, 183, 183)))))
                 .addContainerGap(53, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -206,9 +213,7 @@ public class CadastroCliente extends javax.swing.JFrame {
                 .addGap(65, 65, 65)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel1))
+                .addComponent(RotaCliente)
                 .addGap(68, 68, 68))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
@@ -240,6 +245,13 @@ public class CadastroCliente extends javax.swing.JFrame {
     private void TextNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextNomeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TextNomeActionPerformed
+
+    private void RotaClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RotaClienteMouseClicked
+        // TODO add your handling code here:
+        LoginCliente loginCliente = new LoginCliente();
+        loginCliente.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_RotaClienteMouseClicked
 
     /**
      * @param args the command line arguments
@@ -313,17 +325,16 @@ public class CadastroCliente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel CriarLogin;
+    private javax.swing.JLabel RotaCliente;
     private javax.swing.JTextField TextConfirmSenha;
     private javax.swing.JTextField TextEmail;
     private javax.swing.JTextField TextNome;
     private javax.swing.JTextField TextSenha;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

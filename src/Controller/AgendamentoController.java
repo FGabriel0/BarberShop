@@ -92,6 +92,7 @@ public class AgendamentoController {
        
        while(currentTime.isBefore(LocalTime.of(20, 30))){
            horas.add(currentTime.format(DateTimeFormatter.ofPattern("HH:mm")));
+          
            currentTime = currentTime.plusMinutes(30);
        }  
        JComboBox<String> dataComboBox = view.getVarHora();
@@ -147,20 +148,23 @@ public class AgendamentoController {
        Agendamento agendamento = new Agendamento(Nome, Email, Telefone, Servico, Price, Data, Hora, Observacao);
        
          try {
-            Connection conexao = new Conexao().getConnection();
-            AgendamentoDAO agendamentoDAO = new AgendamentoDAO(conexao);
-            agendamentoDAO.Salvar(agendamento);
-            
-             Correio correio = new Correio();
-             correio.NotificarEmail(agendamento);
-            
-            JOptionPane.showMessageDialog(null, "Agendamento Salvo com Sucesso");
+        Connection conexao = new Conexao().getConnection();
+        AgendamentoDAO agendamentoDAO = new AgendamentoDAO(conexao);
 
-        } catch (SQLException ex) {
-            Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
+        // Verifique se já existe um agendamento para a mesma data e hora
+        if (agendamentoDAO.existeAgendamentoNaDataHora(Data, Hora)) {
+              view.getVarHora().removeItem(Hora);
+            JOptionPane.showMessageDialog(null, "Já existe um agendamento para essa data e hora. Escolha outra data ou hora.");
+        } else {
+            agendamentoDAO.Salvar(agendamento);
+            /* Correio correio = new Correio();;
+            correio.NotificarEmail(agendamento);*/
+            JOptionPane.showMessageDialog(null, "Agendamento Salvo com Sucesso");
         }
+    } catch (SQLException ex) {
+        Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
+    }
    }
-   
    
    
     

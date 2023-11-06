@@ -38,6 +38,11 @@ public class Usuario {
         this.data_Nasc = data_Nasc;
         this.senha = senha;
     }
+
+    public Usuario(String nome) {
+        this.nome = nome;
+    }
+    
     
     
 

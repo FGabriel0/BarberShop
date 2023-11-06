@@ -139,5 +139,22 @@ public class AgendamentoDAO {
         return pesquisa(prepareStatement).get(0);
     }
     
+    public boolean existeAgendamentoNaDataHora(String data, String hora) throws SQLException {
+        String sql = "SELECT COUNT(*) FROM agendamentos WHERE data = ? AND hora = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, data);
+            stmt.setString(2, hora);
+            try (ResultSet resultSet = stmt.executeQuery()) {
+                if (resultSet.next()) {
+                    int count = resultSet.getInt(1);
+                    return count > 0;
+                }
+            }
+        }
+        return false;
+    }
+    
+    
+    
     
 }

@@ -19,6 +19,7 @@ import Views.TelaService;
 import java.awt.Image;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -26,6 +27,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -57,34 +59,38 @@ public class BarbeiroController {
         this.menu = menu;
     }
     
-    
-
-    public void Autenticar() throws SQLException {
-        //Buscar usuario da View
-        String nome = view.getVarNameBarbeiro().getText();
-        String senha = view.getVarPasswordBarbeiro().getText();
-        
-        Usuario usuarioAutenticar = new Usuario(nome, senha);
-        
-        //Verificar Se exixtir no banco de dados
-        Connection conexao = new Conexao().getConnection();
-        UsuarioDAO usuarioDAO = new UsuarioDAO(conexao);
-        
-       boolean existe =  usuarioDAO.autenticarUsuario(usuarioAutenticar); 
-       
-       if(existe){
-         MenuBarbeiro menubarbeiro = new MenuBarbeiro();
-         menubarbeiro.setVisible(true);
-         this.view.dispose();
-       }
-       else{
-           JOptionPane.showMessageDialog(null, "Usuario Não Encontrado no Banco");
-       }
-        
+    public void atualizarTextoBoasVindas(String nome){
+        JLabel welcomeLabel  = menu.getWelcome();
+        welcomeLabel.setText("Seja Bem-Vindo: "+ nome);
     }
     
+   public void Autenticar() throws SQLException {
+    // Buscar usuario da View
+    String nome = view.getVarNameBarbeiro().getText();
+    String senha = view.getVarPasswordBarbeiro().getText();
+
+    Usuario usuarioAutenticar = new Usuario(nome, senha);
+
+    // Verificar Se existir no banco de dados
+    Connection conexao = new Conexao().getConnection();
+    UsuarioDAO usuarioDAO = new UsuarioDAO(conexao);
+    boolean existe = usuarioDAO.autenticarUsuario(usuarioAutenticar);
+
+    if (existe) {
+        MenuBarbeiro menubarbeiro = new MenuBarbeiro();
+        menubarbeiro.setVisible(true);
+        view.setVisible(false);
+
+        BarbeiroController barbeiroController = new BarbeiroController(menubarbeiro);
+        
+        // Passe o nome do usuário para o método de atualização
+        barbeiroController.atualizarTextoBoasVindas(nome);
+    } else {
+        JOptionPane.showMessageDialog(null, "Usuario Não Encontrado no Banco");
+    }
+}
     
-      public void salvarBarbeiro(){
+    public void salvarBarbeiro(){
         
             String Nome = cadastrar.getTextNome().getText();
             String Email = cadastrar.getTextEmail().getText();
@@ -108,7 +114,7 @@ public class BarbeiroController {
         }
     }
       
-      public void atualizarTableService() throws SQLException{
+    public void atualizarTableService() throws SQLException{
           //Buscar Elementos no Banco
              Connection conexao = new Conexao().getConnection();
              ServiceDAO serviceDAO = new ServiceDAO(conexao);
@@ -132,7 +138,7 @@ public class BarbeiroController {
            
       }
       
-      public void VincularCampodaTabelaService() throws SQLException{
+    public void VincularCampodaTabelaService() throws SQLException{
           Connection conexao = new Conexao().getConnection();
           ServiceDAO serviceDAO = new ServiceDAO(conexao);
           ArrayList<Service> Buscar = serviceDAO.Buscar();
@@ -143,9 +149,104 @@ public class BarbeiroController {
                   , service.getFotodoService().getHeight(), Image.SCALE_DEFAULT)));
       } 
       
-      
-      public void atualizarTabelaAgendamento() throws SQLException{
+    public void atualizarTabelaAgendamento() throws SQLException{
            //Buscar Elementos no Banco
+             Connection conexao = new Conexao().getConnection();
+             AgendamentoDAO agendamentoDAO = new AgendamentoDAO(conexao);
+             ArrayList<Agendamento> Buscar = agendamentoDAO.Buscar();
+             
+          //Enviar para View
+            DefaultTableModel tableModel = (DefaultTableModel) menu.getTableAgendamentos() .getModel();
+            tableModel.setNumRows(0);
+            
+           //Pecorrer o TableMode
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+for (Agendamento agendamentos : Buscar) {
+    try {
+        Date dataAgendamento = dateFormat.parse(agendamentos.getData());
+        Date dataAtual = new Date(); // Obter a data atual
+
+        // Verificar se a data do agendamento é maior ou igual à data de hoje
+        if (dataAgendamento.equals(dataAtual) || dataAgendamento.after(dataAtual)) {
+            tableModel.addRow(
+                new Object[]{
+                    agendamentos.getNome(),
+                    agendamentos.getTelefone(),
+                    agendamentos.getServico_id(),
+                    agendamentos.getData(),
+                    agendamentos.getHora(),
+                    agendamentos.getPrice_agendamento(),
+                    agendamentos.getObservacao()
+                }
+            );
+        }
+    } catch (ParseException e) {
+        e.printStackTrace();
+    }
+}
+    }
+      
+    public void filtrarAgendamentosHoje() throws SQLException {
+    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    String hoje = dateFormat.format(new Date());
+
+    Connection conexao = new Conexao().getConnection();
+    AgendamentoDAO agendamentoDAO = new AgendamentoDAO(conexao);
+    ArrayList<Agendamento> agendamentos = agendamentoDAO.Buscar();
+    
+    ArrayList<Agendamento> agendamentosHoje = new ArrayList<>();
+
+    for (Agendamento agendamento : agendamentos) {
+        String dataAgendamento = agendamento.getData(); // Suponhamos que o método de Agendamento que retorna a data seja "getData()"
+        if (dataAgendamento.equals(hoje)) {
+            agendamentosHoje.add(agendamento);
+        }
+    }
+        atualizarTabela(agendamentosHoje);
+
+       }
+       
+    public void atualizarTabela(ArrayList<Agendamento> agendamentos) {
+    DefaultTableModel model = (DefaultTableModel) menu.getTableAgendamentos().getModel();
+    
+    // Limpa o modelo atual da tabela
+    model.setRowCount(0);
+
+    // Adiciona os novos agendamentos à tabela
+    for (Agendamento agendamento : agendamentos) {
+        String[] rowData = {
+            agendamento.getNome(),
+            agendamento.getTelefone(),
+            agendamento.getServico_id(),
+            agendamento.getData(),
+            agendamento.getHora(),
+            agendamento.getPrice_agendamento(),
+            agendamento.getObservacao()
+        };
+        model.addRow(rowData);
+    }
+}
+    
+    public void filtrarTodos() throws SQLException{
+        atualizarTabelaAgendamento();
+    }
+    
+    public boolean dataAnterior(String data1, String data2) {
+    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+    try {
+        Date date1 = dateFormat.parse(data1);
+        Date date2 = dateFormat.parse(data2);
+
+        return date1.before(date2);
+    } catch (ParseException e) {
+        e.printStackTrace();
+        return false;
+    }
+}
+    
+    public void atualizarHistoricodaTabela() throws SQLException{
              Connection conexao = new Conexao().getConnection();
              AgendamentoDAO agendamentoDAO = new AgendamentoDAO(conexao);
              ArrayList<Agendamento> Buscar = agendamentoDAO.Buscar();
@@ -169,50 +270,6 @@ public class BarbeiroController {
                       }
               );
         }
-    }
-    public void filtrarAgendamentosHoje() throws SQLException {
-    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-    String hoje = dateFormat.format(new Date());
-
-    Connection conexao = new Conexao().getConnection();
-    AgendamentoDAO agendamentoDAO = new AgendamentoDAO(conexao);
-    ArrayList<Agendamento> agendamentos = agendamentoDAO.Buscar();
-    
-    ArrayList<Agendamento> agendamentosHoje = new ArrayList<>();
-
-    for (Agendamento agendamento : agendamentos) {
-        String dataAgendamento = agendamento.getData(); // Suponhamos que o método de Agendamento que retorna a data seja "getData()"
-        if (dataAgendamento.equals(hoje)) {
-            agendamentosHoje.add(agendamento);
-        }
-    }
-        atualizarTabela(agendamentosHoje);
-
-       }
-       
-       
-    public void atualizarTabela(ArrayList<Agendamento> agendamentos) {
-    DefaultTableModel model = (DefaultTableModel) menu.getTableAgendamentos().getModel();
-    
-    // Limpa o modelo atual da tabela
-    model.setRowCount(0);
-
-    // Adiciona os novos agendamentos à tabela
-    for (Agendamento agendamento : agendamentos) {
-        String[] rowData = {agendamento.getNome(),
-            agendamento.getTelefone(),
-            agendamento.getServico_id(),
-            agendamento.getData(),
-            agendamento.getHora(),
-            agendamento.getPrice_agendamento(),
-            agendamento.getObservacao()
-        };
-        model.addRow(rowData);
-    }
-}
-    
-    public void filtrarTodos() throws SQLException{
-        atualizarTabelaAgendamento();
     }
              
 }
