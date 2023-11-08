@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package DAO;
+import Model.Agendamento;
 import java.sql.Connection;
 import Model.Cliente;
 import java.sql.PreparedStatement;
@@ -36,21 +37,25 @@ public class ClienteDAO {
        
     }
 
-    public boolean autenticarCliente(Cliente clienteAutenticar) throws SQLException {
-        String sql = "select * from clientes where nome = ? and senha = ?";
-        
-        PreparedStatement prepareStatement = connection.prepareStatement(sql);
-        prepareStatement.setString(1, clienteAutenticar.getNome());
-        prepareStatement.setString(2, clienteAutenticar.getSenha());
-        prepareStatement.execute();       
-        connection.close();
-        
-        ResultSet resultSet = prepareStatement.getResultSet();
-        
-        return resultSet.next();
-    }   
-    
-    
+   public Cliente autenticarCliente(Cliente cliente) throws SQLException {
+    String sql = "SELECT * FROM clientes WHERE email = ? AND senha = ?";
+    try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+        preparedStatement.setString(1, cliente.getEmail());
+        preparedStatement.setString(2, cliente.getSenha());
+        try (ResultSet resultSet = preparedStatement.executeQuery()) {
+            if (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String nome = resultSet.getString("nome");
+                // Outros campos, se necessário
+
+                return new Cliente(id, nome, cliente.getEmail(), cliente.getSenha());
+            }
+        }
+    }
+    return null;
+}
+
+      
     public void Atualizar(Cliente clientes) throws SQLException{
         String sql = "update clientes set nome = ?, senha = ? where id = ? ";
         
@@ -63,13 +68,13 @@ public class ClienteDAO {
         connection.close();
     }
     
-    public void SalvarouAtualiza(Cliente clientes) throws SQLException{
-        if(clientes.getId() > 0){
-            Atualizar(clientes);
-        }
-        else{
-            Salvar(clientes);
-        }
+      public void SalvarouAtualiza(Cliente clientes) throws SQLException{
+    if(clientes.getId() > 0){
+    Atualizar(clientes);
+    }
+    else{
+    Salvar(clientes);
+    }
     }
     
     public void Deleta(Cliente clientes) throws SQLException{
@@ -117,5 +122,23 @@ public class ClienteDAO {
         
         return pesquisa(prepareStatement).get(0);
     }
-         
+    
+  public String getNomeClienteByEmail(String email) throws SQLException {
+    String nomeCliente = null;
+
+    String query = "SELECT nome FROM clientes WHERE email = ?";
+
+    try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+        preparedStatement.setString(1, email);
+        try (ResultSet resultSet = preparedStatement.executeQuery()) {
+            if (resultSet.next()) {
+                nomeCliente = resultSet.getString("nome");
+            }
+        }
+    }
+
+    return nomeCliente;
+}
+       
+    
 }

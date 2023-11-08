@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.sql.Connection;
+import java.util.List;
 
 /**
  *
@@ -45,21 +46,7 @@ public class AgendamentoDAO {
        
     }
 
-     /* public boolean autenticarCliente(Agendamento agendamentoAutenticar) throws SQLException {
-     String sql = "select * from clientes where nome = ? and senha = ?";
-     
-     PreparedStatement prepareStatement = connection.prepareStatement(sql);
-     prepareStatement.setString(1, agendamentoAutenticar.getNome());
-     prepareStatement.setString(2, agendamentoAutenticar.getSenha());
-     prepareStatement.execute();
-     connection.close();
-     
-     ResultSet resultSet = prepareStatement.getResultSet();
-     
-     return resultSet.next();
-     }   */
-    
-    
+
     public void Atualizar(Agendamento agendamentos) throws SQLException{
         String sql = "update agendamentos set nome = ?, telefone = ?,email = ?,service_id = ?, price_service = ?,data= ?,hora = ?,observacao = ?  where id = ? ";
         
@@ -72,27 +59,27 @@ public class AgendamentoDAO {
         prepareStatement.setString(6, agendamentos.getData());
         prepareStatement.setString(7, agendamentos.getHora());
         prepareStatement.setString(8, agendamentos.getObservacao());
-        prepareStatement.setLong(9, agendamentos.getId());
+        prepareStatement.setInt(9, agendamentos.getId());
         prepareStatement.execute();   
         
         connection.close();
     }
     
-    public void SalvarouAtualiza(Agendamento agendamentos) throws SQLException{
-        if(agendamentos.getId() > 0){
-            Atualizar(agendamentos);
-        }
-        else{
-            Salvar(agendamentos);
-        }
+    /*  public void SalvarouAtualiza(Agendamento agendamentos) throws SQLException{;
+    if(agendamentos.getId() > 0){
+    Atualizar(agendamentos);
     }
+    else{
+    Salvar(agendamentos);
+    }
+    }*/
     
     public void Deleta(Agendamento agendamentos) throws SQLException{
-        String sql = "delete from agendamentos where id = ? ";
+        String sql = "DELETE from agendamentos where id = ? ";
         
         PreparedStatement prepareStatement = connection.prepareStatement(sql);
-        prepareStatement.setLong(1, agendamentos.getId());
-        prepareStatement.execute();   
+        prepareStatement.setInt(1, agendamentos.getId());
+        prepareStatement.executeUpdate();   
         
         connection.close();
     }
@@ -106,14 +93,15 @@ public class AgendamentoDAO {
         return pesquisa(prepareStatement);  
     }
 
-    private ArrayList<Agendamento> pesquisa(PreparedStatement prepareStatement) throws SQLException {
+   private ArrayList<Agendamento> pesquisa(PreparedStatement prepareStatement) throws SQLException {
         ArrayList<Agendamento> agendamentos = new ArrayList<Agendamento>();
         
         prepareStatement.execute();
         ResultSet resultSet = prepareStatement.getResultSet();
                 
         while(resultSet.next()){
-            int id = resultSet.getInt("id");
+            int Id = resultSet.getInt("id");
+                        
             String Nome = resultSet.getString("nome");
             String Telefone = resultSet.getString("telefone");
             String Email = resultSet.getString("email");
@@ -123,22 +111,28 @@ public class AgendamentoDAO {
             String Hora = resultSet.getString("hora");
             String Observacao = resultSet.getString("observacao");
             
-            Agendamento AgendamentoEncontrado = new Agendamento(Long.MIN_VALUE, Nome, Telefone, Service_id, Price_service, Data, Hora, Observacao);
+            Agendamento AgendamentoEncontrado = new Agendamento(Id, Nome, Email, Telefone, Service_id, Price_service, Data, Hora, Observacao);
             agendamentos.add(AgendamentoEncontrado);
                  
         }
         return agendamentos;  
     }
     
-    public Agendamento BuscarPorId(Agendamento agendamentos) throws SQLException{
+     public Agendamento BuscarPorId(int id) throws SQLException {
         String sql = "select from agendamentos where id = ? ";
         
-        PreparedStatement prepareStatement = connection.prepareStatement(sql);
-        prepareStatement.setLong(1, agendamentos.getId());
-        
-        return pesquisa(prepareStatement).get(0);
-    }
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setInt(1,id);
     
+        ArrayList<Agendamento> services = pesquisa(preparedStatement);
+    
+    if (!services.isEmpty()) {
+        return services.get(0);
+    } else {
+        return null; // ou lançar uma exceção se preferir
+    }
+}    
+     
     public boolean existeAgendamentoNaDataHora(String data, String hora) throws SQLException {
         String sql = "SELECT COUNT(*) FROM agendamentos WHERE data = ? AND hora = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
@@ -153,6 +147,22 @@ public class AgendamentoDAO {
         }
         return false;
     }
+    
+public Agendamento BuscarPorEmail(String email) throws SQLException {
+        String sql = "select from agendamentos where email = ? ";
+        
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1,email);
+    
+        ArrayList<Agendamento> services = pesquisa(preparedStatement);
+    
+    if (!services.isEmpty()) {
+        return services.get(0);
+    } else {
+        return null; // ou lançar uma exceção se preferir
+    }
+}    
+
     
     
     

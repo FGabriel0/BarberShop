@@ -22,7 +22,6 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -62,7 +61,10 @@ public class BarbeiroController {
     public void atualizarTextoBoasVindas(String nome){
         JLabel welcomeLabel  = menu.getWelcome();
         welcomeLabel.setText("Seja Bem-Vindo: "+ nome);
+        
+        
     }
+   
     
    public void Autenticar() throws SQLException {
     // Buscar usuario da View
@@ -124,18 +126,15 @@ public class BarbeiroController {
             DefaultTableModel tableModel = (DefaultTableModel) service.getTableServices().getModel();
             tableModel.setNumRows(0);
             
-           //Pecorrer o TableMode
-           for (Service services : Buscar) {
-              tableModel.addRow(
-                      new Object[]{
-                          services.getNome(),
-                          services.getPrice()
-                      }
-              );
-          }
-           
-           
-           
+            for (Service services : Buscar) {
+                tableModel.addRow(new Object[]{
+                    services.getId(),
+                    services.getNome(),
+                    services.getPrice()
+                });
+
+}
+              
       }
       
     public void VincularCampodaTabelaService() throws SQLException{
@@ -171,6 +170,7 @@ for (Agendamento agendamentos : Buscar) {
         if (dataAgendamento.equals(dataAtual) || dataAgendamento.after(dataAtual)) {
             tableModel.addRow(
                 new Object[]{
+                    agendamentos.getId(),
                     agendamentos.getNome(),
                     agendamentos.getTelefone(),
                     agendamentos.getServico_id(),
@@ -259,6 +259,7 @@ for (Agendamento agendamentos : Buscar) {
            for (Agendamento agendamentos : Buscar) {
               tableModel.addRow(
                       new Object[]{
+                          agendamentos.getId(),
                           agendamentos.getNome(),
                           agendamentos.getTelefone(),
                           agendamentos.getServico_id(),
@@ -271,5 +272,6 @@ for (Agendamento agendamentos : Buscar) {
               );
         }
     }
-             
+      
+    
 }

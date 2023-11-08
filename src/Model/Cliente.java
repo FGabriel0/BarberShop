@@ -28,8 +28,8 @@ public class Cliente {
         this.senha = senha;
     }
 
-    public Cliente(String nome, String senha) {
-        this.nome = nome;
+    public Cliente(String email, String senha) {
+        this.email = email;
         this.senha = senha;
     }
     public Cliente(int id,String nome, String senha) {

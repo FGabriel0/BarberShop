@@ -34,8 +34,7 @@ public class ServiceDAO {
         connection.close();
          
     }
-     
-     
+      
      public void Atualizar(Service services) throws SQLException{
         String sql = "update services set imagem = ? ,nome = ?, price = ? where id = ? ";
         
@@ -43,7 +42,7 @@ public class ServiceDAO {
         prepareStatement.setString(1, services.getImagem());
         prepareStatement.setString(2, services.getNome());
         prepareStatement.setString(3, services.getPrice());
-        prepareStatement.setLong(4, services.getId());
+        prepareStatement.setInt(4, services.getId());
         prepareStatement.execute();   
         
         connection.close();
@@ -59,11 +58,11 @@ public class ServiceDAO {
     }
     
     public void Deleta(Service services) throws SQLException{
-        String sql = "delete from services where id = ? ";
+        String sql = "DELETE from services where id = ? ";
         
         PreparedStatement prepareStatement = connection.prepareStatement(sql);
-        prepareStatement.setLong(1, services.getId());
-        prepareStatement.execute();   
+        prepareStatement.setInt(1, services.getId());
+        prepareStatement.executeUpdate();   
         
         connection.close();
     }
@@ -90,20 +89,26 @@ public class ServiceDAO {
             String nome = resultSet.getString("nome");
             String price = resultSet.getString("price");
             
-            Service serviceEncontrado = new Service(Long.MIN_VALUE, imagem, nome, price);
+            Service serviceEncontrado = new Service(id, imagem, nome, price);
             services.add(serviceEncontrado);
                  
         }
         return services;  
     }
     
-    public Service BuscarPorId(Service services) throws SQLException{
-        String sql = "select from services where id = ? ";
-        
-        PreparedStatement prepareStatement = connection.prepareStatement(sql);
-        prepareStatement.setLong(1, services.getId());
-        
-        return pesquisa(prepareStatement).get(0);
+    public Service BuscarPorId(int id) throws SQLException {
+    String sql = "SELECT * FROM services WHERE id = ?";
+    
+    PreparedStatement preparedStatement = connection.prepareStatement(sql);
+    preparedStatement.setInt(1, id);
+    
+    ArrayList<Service> services = pesquisa(preparedStatement);
+    
+    if (!services.isEmpty()) {
+        return services.get(0);
+    } else {
+        return null; // ou lançar uma exceção se preferir
     }
-         
+}
+
 }

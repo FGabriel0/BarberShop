@@ -5,6 +5,7 @@
 package Views;
 
 import Controller.BarbeiroController;
+import Controller.ServicesController;
 import Model.Service;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -19,12 +20,14 @@ import javax.swing.JTable;
  */
 public class TelaService extends javax.swing.JFrame {
     private final BarbeiroController controller;
+    private final ServicesController serviceController;
     /**
      * Creates new form TelaService
      */
     public TelaService() throws SQLException {
         initComponents();
         controller = new BarbeiroController(this);
+        serviceController= new ServicesController(this);
         iniciarTable();
 
     }
@@ -60,13 +63,13 @@ public class TelaService extends javax.swing.JFrame {
         TableServices.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         TableServices.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Corte", "Preço"
+                "Codigo", "Corte", "Preço"
             }
         ));
         TableServices.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -95,6 +98,11 @@ public class TelaService extends javax.swing.JFrame {
         });
 
         jButton3.setText("Alterar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -198,7 +206,16 @@ public class TelaService extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        serviceController.Excluir();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        AlterarService alterar = new AlterarService();
+        alterar.setVisible(true);
+        setVisible(false);
+            
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

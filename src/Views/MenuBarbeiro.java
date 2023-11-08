@@ -4,6 +4,7 @@
  */
 package Views;
 
+import Controller.AgendamentoController;
 import Controller.BarbeiroController;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -18,6 +19,8 @@ import javax.swing.JTable;
 public class MenuBarbeiro extends javax.swing.JFrame {
 
     private BarbeiroController controller;
+    private  AgendamentoController agendamentoController;
+    private MenuBarbeiro menu;
 
     public MenuBarbeiro(BarbeiroController controller) {
         this.controller = controller;
@@ -29,6 +32,7 @@ public class MenuBarbeiro extends javax.swing.JFrame {
     public MenuBarbeiro() throws SQLException {
         initComponents();
         controller = new BarbeiroController(this);
+        agendamentoController = new AgendamentoController(this);
         iniciarTable();
     }
     
@@ -51,6 +55,7 @@ public class MenuBarbeiro extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         TableAgendamentos = new javax.swing.JTable();
         TodosAgendamentos = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         AgendamentoHistorico = new javax.swing.JButton();
         Welcome = new javax.swing.JLabel();
         AgendamentoHoje = new javax.swing.JButton();
@@ -61,6 +66,7 @@ public class MenuBarbeiro extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -69,18 +75,18 @@ public class MenuBarbeiro extends javax.swing.JFrame {
         TableAgendamentos.setForeground(new java.awt.Color(0, 0, 0));
         TableAgendamentos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Nome", "whats", "Serviço", "Data", "Hora", "Preço", "Obser"
+                "Código", "Nome", "whats", "Serviço", "Data", "Hora", "Preço", "Obser"
             }
         ));
         jScrollPane1.setViewportView(TableAgendamentos);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 910, 330));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 910, 330));
 
         TodosAgendamentos.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         TodosAgendamentos.setForeground(new java.awt.Color(255, 255, 255));
@@ -91,6 +97,16 @@ public class MenuBarbeiro extends javax.swing.JFrame {
             }
         });
         getContentPane().add(TodosAgendamentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, 70, 30));
+
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Delete");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 70, -1, 30));
 
         AgendamentoHistorico.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         AgendamentoHistorico.setForeground(new java.awt.Color(255, 255, 255));
@@ -141,7 +157,7 @@ public class MenuBarbeiro extends javax.swing.JFrame {
 
         jMenuItem3.setForeground(new java.awt.Color(0, 0, 0));
         jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ViewsIcons/usuario-icon.png"))); // NOI18N
-        jMenuItem3.setText("Voltar");
+        jMenuItem3.setText("Sair");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem3ActionPerformed(evt);
@@ -158,6 +174,16 @@ public class MenuBarbeiro extends javax.swing.JFrame {
             }
         });
         jMenu2.add(jMenuItem1);
+
+        jMenuItem4.setForeground(new java.awt.Color(0, 0, 0));
+        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ViewsIcons/agenda-icon.png"))); // NOI18N
+        jMenuItem4.setText("Agendar");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem4);
 
         jMenuBar1.add(jMenu2);
 
@@ -219,6 +245,19 @@ public class MenuBarbeiro extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_AgendamentoHistoricoActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        agendamentoController.ExcluirAgendamento();
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+        Agendar agendar = new Agendar();
+        agendar.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -279,6 +318,7 @@ public class MenuBarbeiro extends javax.swing.JFrame {
     private javax.swing.JTable TableAgendamentos;
     private javax.swing.JButton TodosAgendamentos;
     private javax.swing.JLabel Welcome;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu2;
@@ -286,6 +326,7 @@ public class MenuBarbeiro extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

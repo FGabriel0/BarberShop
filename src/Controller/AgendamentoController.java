@@ -5,14 +5,14 @@
 package Controller;
 
 import DAO.AgendamentoDAO;
-import DAO.ClienteDAO;
 import DAO.Conexao;
 import DAO.ServiceDAO;
 import Model.Agendamento;
 import Model.Service;
-import ServiceEmail.Correio;
 import Views.Agendar;
 import Views.CadastroCliente;
+import Views.ControleHorario;
+import Views.MenuBarbeiro;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -35,7 +35,13 @@ import javax.swing.JOptionPane;
  * @author Biel
  */
 public class AgendamentoController {
-    private final Agendar view;
+    private  Agendar view;
+    private MenuBarbeiro menu;
+    private ControleHorario controller;
+
+    public AgendamentoController(MenuBarbeiro menu) {
+        this.menu = menu;
+    }
     
     public AgendamentoController(Agendar view) {
         this.view = view;
@@ -78,7 +84,6 @@ public class AgendamentoController {
             }
         });
    }
-   
    
    public void AdicionandoHoras() throws SQLException{
        Connection conexao = new Conexao().getConnection();
@@ -132,8 +137,6 @@ public class AgendamentoController {
          
    }
    
-   
-   
    public void salvarAgendamento(){
        String Nome = view.getVarName().getText();
        String Email = view.getVarEmail().getText();
@@ -157,8 +160,6 @@ public class AgendamentoController {
             JOptionPane.showMessageDialog(null, "Já existe um agendamento para essa data e hora. Escolha outra data ou hora.");
         } else {
             agendamentoDAO.Salvar(agendamento);
-            /* Correio correio = new Correio();;
-            correio.NotificarEmail(agendamento);*/
             JOptionPane.showMessageDialog(null, "Agendamento Salvo com Sucesso");
         }
     } catch (SQLException ex) {
@@ -166,6 +167,38 @@ public class AgendamentoController {
     }
    }
    
+   public void ExcluirAgendamento() {
+    String idStr = JOptionPane.showInputDialog(null, "Digite o Código a ser excluído:");
+    Agendamento agendamento = new Agendamento(0);
+    if (idStr != null && !idStr.isEmpty()) {
+        try {
+            int id = Integer.parseInt(idStr); // Converter a string para int
+            Connection conexao = new Conexao().getConnection();
+            AgendamentoDAO agendamentoDAO = new AgendamentoDAO(conexao);
+
+            // Verificar se o serviço com o ID fornecido existe no banco de dados
+            Agendamento existingService = agendamentoDAO.BuscarPorId(id);
+
+            if (existingService != null) {
+                // Se o serviço com o ID existir, exclua-o
+                agendamentoDAO.Deleta(existingService);
+                JOptionPane.showMessageDialog(null, "Agendamento excluído com sucesso.");
+            } else {
+                // Se o serviço com o ID não existe, exiba uma mensagem de erro
+                JOptionPane.showMessageDialog(null, "Código não encontrado. Não é possível excluir o Agendamento.");
+            }
+
+            conexao.close();
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Código inválido. Digite um número válido.");
+        } catch (Exception e) {
+            Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, e);
+        }
+    } else {
+        JOptionPane.showMessageDialog(null, "Nenhum ID fornecido. A exclusão foi cancelada.");
+    }
+  }
    
     
+
 }

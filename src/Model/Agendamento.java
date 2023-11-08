@@ -10,7 +10,7 @@ package Model;
  */
 public class Agendamento {
     
-    private Long id;
+    private int id;
     private String nome;
     private String email;
     private String telefone;
@@ -19,8 +19,34 @@ public class Agendamento {
     private String data;
     private String hora;
     private String observacao;
+    private int Cliente_id;
 
-    public Agendamento(Long id, String nome, String telefone, String servico_id, String price_agendamento, String data, String hora, String observacao) {
+    public Agendamento(int id, String nome, String email, String telefone, String servico_id, String price_agendamento, String data, String hora, String observacao, int Cliente_id) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.telefone = telefone;
+        this.servico_id = servico_id;
+        this.price_agendamento = price_agendamento;
+        this.data = data;
+        this.hora = hora;
+        this.observacao = observacao;
+        this.Cliente_id = Cliente_id;
+    }
+
+    public Agendamento(int id, String nome, String email, String telefone, String servico_id, String price_agendamento, String data, String hora, String observacao) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.telefone = telefone;
+        this.servico_id = servico_id;
+        this.price_agendamento = price_agendamento;
+        this.data = data;
+        this.hora = hora;
+        this.observacao = observacao;
+    }
+
+    public Agendamento(int id, String nome, String telefone, String servico_id, String price_agendamento, String data, String hora, String observacao, int Cliente_id) {
         this.id = id;
         this.nome = nome;
         this.telefone = telefone;
@@ -29,7 +55,20 @@ public class Agendamento {
         this.data = data;
         this.hora = hora;
         this.observacao = observacao;
+        this.Cliente_id = Cliente_id;
     }
+    
+
+
+    public Agendamento(int id) {
+        this.id = id;
+    }
+
+    public Agendamento(String email) {
+        this.email = email;
+    }
+    
+    
 
     public Agendamento(String nome, String email, String telefone, String servico_id, String price_agendamento, String data, String hora, String observacao) {
         this.nome = nome;
@@ -42,9 +81,15 @@ public class Agendamento {
         this.observacao = observacao;
     }
 
-    
-   
+    public int getCliente_id() {
+        return Cliente_id;
+    }
 
+    public void setCliente_id(int Cliente_id) {
+        this.Cliente_id = Cliente_id;
+    }
+
+    
     public String getTelefone() {
         return telefone;
     }
@@ -54,11 +99,11 @@ public class Agendamento {
     }
 
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
