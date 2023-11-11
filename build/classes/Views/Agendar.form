@@ -121,16 +121,9 @@
                           <Component id="jButton2" min="-2" pref="339" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="1194" max="-2" attributes="0"/>
-                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="ImagemCorte" min="-2" pref="124" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
+                  <EmptySpace min="-2" pref="1194" max="-2" attributes="0"/>
+                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -200,10 +193,6 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="109" max="-2" attributes="0"/>
                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="330" max="-2" attributes="0"/>
-                          <Component id="ImagemCorte" min="-2" pref="118" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace pref="7" max="32767" attributes="0"/>
@@ -309,7 +298,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Selecione o servi&#xe7;o..."/>
+            <Property name="text" type="java.lang.String" value="Modelo do servi&#xe7;o..."/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="labelhorario1">
@@ -411,15 +400,19 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="124" max="32767" attributes="0"/>
+                  <Component id="ImagemCorte" alignment="0" pref="124" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="118" max="32767" attributes="0"/>
+                  <Component id="ImagemCorte" alignment="0" pref="118" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="ImagemCorte">
+            </Component>
+          </SubComponents>
         </Container>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
           <AuxValues>
@@ -446,8 +439,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Observa&#xe7;&#xe3;o"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="ImagemCorte">
         </Component>
         <Component class="javax.swing.JTextField" name="VarName">
           <Properties>

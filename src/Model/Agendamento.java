@@ -19,7 +19,6 @@ public class Agendamento {
     private String data;
     private String hora;
     private String observacao;
-    private int Cliente_id;
 
     public Agendamento(int id, String nome, String email, String telefone, String servico_id, String price_agendamento, String data, String hora, String observacao, int Cliente_id) {
         this.id = id;
@@ -31,7 +30,6 @@ public class Agendamento {
         this.data = data;
         this.hora = hora;
         this.observacao = observacao;
-        this.Cliente_id = Cliente_id;
     }
 
     public Agendamento(int id, String nome, String email, String telefone, String servico_id, String price_agendamento, String data, String hora, String observacao) {
@@ -55,7 +53,6 @@ public class Agendamento {
         this.data = data;
         this.hora = hora;
         this.observacao = observacao;
-        this.Cliente_id = Cliente_id;
     }
     
 
@@ -80,15 +77,6 @@ public class Agendamento {
         this.hora = hora;
         this.observacao = observacao;
     }
-
-    public int getCliente_id() {
-        return Cliente_id;
-    }
-
-    public void setCliente_id(int Cliente_id) {
-        this.Cliente_id = Cliente_id;
-    }
-
     
     public String getTelefone() {
         return telefone;

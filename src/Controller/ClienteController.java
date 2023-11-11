@@ -92,6 +92,9 @@ public void Autenticar() throws SQLException {
             clienteDAO.Salvar(cliente);
             
             JOptionPane.showMessageDialog(null, "Cliente Salvo com Sucesso");
+            cadastrar.dispose();
+            LoginCliente loginCliente = new LoginCliente();
+            loginCliente.setVisible(true);
 
         } catch (SQLException ex) {
             Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);

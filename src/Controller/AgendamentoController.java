@@ -13,6 +13,8 @@ import Views.Agendar;
 import Views.CadastroCliente;
 import Views.ControleHorario;
 import Views.MenuBarbeiro;
+import Views.MenuCliente;
+import Views.TelaAgendamentoBarbeiro;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -38,9 +40,14 @@ public class AgendamentoController {
     private  Agendar view;
     private MenuBarbeiro menu;
     private ControleHorario controller;
+    private TelaAgendamentoBarbeiro AgendamentoBarbeiro;
 
     public AgendamentoController(MenuBarbeiro menu) {
         this.menu = menu;
+    }
+
+    public AgendamentoController(TelaAgendamentoBarbeiro AgendamentoBarbeiro) {
+        this.AgendamentoBarbeiro = AgendamentoBarbeiro;
     }
     
     public AgendamentoController(Agendar view) {
@@ -161,6 +168,10 @@ public class AgendamentoController {
         } else {
             agendamentoDAO.Salvar(agendamento);
             JOptionPane.showMessageDialog(null, "Agendamento Salvo com Sucesso");
+            
+            view.dispose();
+            MenuCliente menuCliente = new MenuCliente();
+            menuCliente.setVisible(true);
         }
     } catch (SQLException ex) {
         Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);

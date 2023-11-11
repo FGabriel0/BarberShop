@@ -110,6 +110,10 @@ public class BarbeiroController {
             usuarioDAO.Salvar(usuario);
             
             JOptionPane.showMessageDialog(null, "Usuario Salvo com Sucesso");
+            
+            cadastrar.dispose();
+            MenuBarbeiro menuBarbeiro = new MenuBarbeiro();
+            menuBarbeiro.setVisible(true);
 
         } catch (SQLException ex) {
             Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);

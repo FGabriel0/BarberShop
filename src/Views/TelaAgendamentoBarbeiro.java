@@ -13,26 +13,22 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-
 /**
  *
  * @author Biel
  */
-public class Agendar extends javax.swing.JFrame {
-
-    private AgendamentoController controller;
-
-    public Agendar(AgendamentoController controller) {
-        this.controller = controller;
-    }
+public class TelaAgendamentoBarbeiro extends javax.swing.JFrame {
+        private AgendamentoController controller;
 
     
+
     /**
-     * Creates new form Agendar
+     * Creates new form TelaAgendamentoBarbeiro
      */
-    public Agendar() {
+    public TelaAgendamentoBarbeiro() {
         initComponents();
         controller = new AgendamentoController(this);
+
     }
 
     /**
@@ -44,7 +40,8 @@ public class Agendar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        VarCorte = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         label = new javax.swing.JLabel();
@@ -68,14 +65,32 @@ public class Agendar extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         VarTelefone = new javax.swing.JTextField();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ViewsImagens/Logo_resized.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(64, 64, 64)
+                .addComponent(jLabel8)
+                .addContainerGap(76, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(80, 80, 80)
+                .addComponent(jLabel8)
+                .addContainerGap(100, Short.MAX_VALUE))
+        );
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0, 140));
         jPanel2.setForeground(new java.awt.Color(244, 244, 244));
@@ -343,31 +358,6 @@ public class Agendar extends javax.swing.JFrame {
                 .addContainerGap(7, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 0, 590, 480));
-
-        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
-
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ViewsImagens/Logo_resized.png"))); // NOI18N
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(64, 64, 64)
-                .addComponent(jLabel8)
-                .addContainerGap(76, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addComponent(jLabel8)
-                .addContainerGap(100, Short.MAX_VALUE))
-        );
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 480));
-
         jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
         jMenuBar1.setForeground(new java.awt.Color(0, 0, 0));
 
@@ -387,32 +377,44 @@ public class Agendar extends javax.swing.JFrame {
 
         setJMenuBar(jMenuBar1);
 
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1030, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, 0)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 480, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
-            // TODO add your handling code here:
-            controller.salvarAgendamento();
-        
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void ComboBoxServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxServiceActionPerformed
-        // TODO add your handling code here:
-  
-    }//GEN-LAST:event_ComboBoxServiceActionPerformed
-
-    private void VarTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VarTelefoneActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_VarTelefoneActionPerformed
-
-    private void VarEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VarEmailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_VarEmailActionPerformed
-
-    private void VarNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VarNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_VarNameActionPerformed
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+            try {
+                // TODO add your handling code here:
+                MenuBarbeiro menu = new MenuBarbeiro();
+                menu.setVisible(true);
+                setVisible(false);
+            } catch (SQLException ex) {
+                Logger.getLogger(TelaAgendamentoBarbeiro.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void VarPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VarPriceActionPerformed
         // TODO add your handling code here:
@@ -427,6 +429,11 @@ public class Agendar extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_ComboBoxServiceAncestorAdded
 
+    private void ComboBoxServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxServiceActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_ComboBoxServiceActionPerformed
+
     private void VarHoraAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_VarHoraAncestorAdded
         try {
             // TODO add your handling code here:
@@ -436,25 +443,37 @@ public class Agendar extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_VarHoraAncestorAdded
 
+    private void VarHoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VarHoraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_VarHoraActionPerformed
+
     private void VarDataAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_VarDataAncestorAdded
         // TODO add your handling code here:
         controller.AdicionandoData();
     }//GEN-LAST:event_VarDataAncestorAdded
 
-    private void VarHoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VarHoraActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_VarHoraActionPerformed
-
     private void VarDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VarDataActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_VarDataActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
         // TODO add your handling code here:
-        MenuCliente menu = new MenuCliente();
-        menu.setVisible(true);
-        setVisible(false);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+        controller.salvarAgendamento();
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void VarNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VarNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_VarNameActionPerformed
+
+    private void VarEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VarEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_VarEmailActionPerformed
+
+    private void VarTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VarTelefoneActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_VarTelefoneActionPerformed
 
     /**
      * @param args the command line arguments
@@ -473,114 +492,28 @@ public class Agendar extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Agendar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaAgendamentoBarbeiro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Agendar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaAgendamentoBarbeiro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Agendar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaAgendamentoBarbeiro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Agendar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaAgendamentoBarbeiro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Agendar().setVisible(true);
+                new TelaAgendamentoBarbeiro().setVisible(true);
             }
         });
     }
-
-    public JComboBox<String> getComboBoxService() {
-        return ComboBoxService;
-    }
-
-    public void setComboBoxService(JComboBox<String> ComboBoxService) {
-        this.ComboBoxService = ComboBoxService;
-    }
-
-    public JLabel getVarCorte() {
-        return VarCorte;
-    }
-
-    public void setVarCorte(JLabel VarCorte) {
-        this.VarCorte = VarCorte;
-    }
-
-   
-    public JTextField getVarEmail() {
-        return VarEmail;
-    }
-
-    public void setVarEmail(JTextField VarEmail) {
-        this.VarEmail = VarEmail;
-    }
-
-    public JComboBox getVarData() {
-        return VarData;
-    }
-
-    public void setVarData(JComboBox VarData) {
-        this.VarData = VarData;
-    }
-    
-
-    public JComboBox<String> getVarHora() {
-        return VarHora;
-    }
-
-    public void setVarHora(JComboBox<String> VarHora) {
-        this.VarHora = VarHora;
-    }
-
-    public JTextField getVarTelefone() {
-        return VarTelefone;
-    }
-
-    public void setVarTelefone(JTextField VarTelefone) {
-        this.VarTelefone = VarTelefone;
-    }
-
-   
-    public JTextField getVarName() {
-        return VarName;
-    }
-
-    public void setVarName(JTextField VarName) {
-        this.VarName = VarName;
-    }
-
-    public JTextArea getVarObeservacao() {
-        return VarObeservacao;
-    }
-
-    public void setVarObeservacao(JTextArea VarObeservacao) {
-        this.VarObeservacao = VarObeservacao;
-    }
-
-    public JTextField getVarPrice() {
-        return VarPrice;
-    }
-
-    public void setVarPrice(JTextField VarPrice) {
-        this.VarPrice = VarPrice;
-    }
-
-    public JLabel getImagemCorte() {
-        return ImagemCorte;
-    }
-
-    public void setImagemCorte(JLabel ImagemCorte) {
-        this.ImagemCorte = ImagemCorte;
-    }
-    
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox ComboBoxService;
     private javax.swing.JLabel ImagemCorte;
     private javax.swing.JPanel PainelImagem;
-    private javax.swing.JLabel VarCorte;
     private javax.swing.JComboBox VarData;
     private javax.swing.JTextField VarEmail;
     private javax.swing.JComboBox VarHora;
@@ -608,4 +541,3 @@ public class Agendar extends javax.swing.JFrame {
     private javax.swing.JLabel labelservice;
     // End of variables declaration//GEN-END:variables
 }
-

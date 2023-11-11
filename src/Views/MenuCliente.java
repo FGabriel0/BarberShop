@@ -46,6 +46,9 @@ public class MenuCliente extends javax.swing.JFrame {
         TableAgendamentos = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -111,6 +114,21 @@ public class MenuCliente extends javax.swing.JFrame {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ViewsImagens/BannerPC.jpg"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1140, 490));
 
+        jMenu2.setText("Ações");
+
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ViewsIcons/usuario-icon.png"))); // NOI18N
+        jMenuItem2.setText("Voltar");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem2);
+
+        jMenuBar2.add(jMenu2);
+
+        setJMenuBar(jMenuBar2);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -124,6 +142,13 @@ public class MenuCliente extends javax.swing.JFrame {
     private void ButtonEmDiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonEmDiaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ButtonEmDiaActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        LoginCliente login = new LoginCliente();
+        login.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -201,6 +226,9 @@ public class MenuCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel welcomeCliente;
     // End of variables declaration//GEN-END:variables

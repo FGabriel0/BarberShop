@@ -118,20 +118,20 @@ public class AgendamentoDAO {
         return agendamentos;  
     }
     
-     public Agendamento BuscarPorId(int id) throws SQLException {
-        String sql = "select from agendamentos where id = ? ";
-        
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setInt(1,id);
+   public Agendamento BuscarPorId(int id) throws SQLException {
+    String sql = "SELECT * FROM agendamentos WHERE id = ?";
     
-        ArrayList<Agendamento> services = pesquisa(preparedStatement);
+    PreparedStatement preparedStatement = connection.prepareStatement(sql);
+    preparedStatement.setInt(1, id);
+    
+    ArrayList<Agendamento> services = pesquisa(preparedStatement);
     
     if (!services.isEmpty()) {
         return services.get(0);
     } else {
-        return null; // ou lançar uma exceção se preferir
+        return null; 
     }
-}    
+}
      
     public boolean existeAgendamentoNaDataHora(String data, String hora) throws SQLException {
         String sql = "SELECT COUNT(*) FROM agendamentos WHERE data = ? AND hora = ?";

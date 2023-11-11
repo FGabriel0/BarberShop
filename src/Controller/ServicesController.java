@@ -17,10 +17,10 @@ public class ServicesController {
     private AddService views;
     private Service currentService;
     private AlterarService edit;
-    private TelaService service;
+    private TelaService services;
 
-    public ServicesController(TelaService service) {
-        this.service = service;
+    public ServicesController(TelaService services) {
+        this.services = services;
     }
 
     public ServicesController(AddService views) {
@@ -37,7 +37,7 @@ public class ServicesController {
             String price = views.getVarPriceService().getText();
             String imagem = views.getTfCaminho().getText();
               
-             Service service = new Service(imagem, nome, price);
+            Service service = new Service(imagem, nome, price);
              
         try {
             Connection conexao = new Conexao().getConnection();
@@ -45,6 +45,11 @@ public class ServicesController {
             serviceDAO.Salvar(service);
             
             JOptionPane.showMessageDialog(null, "Service Salvo com Sucesso");
+            
+            views.dispose();
+            TelaService tela = new TelaService();
+            tela.setVisible(true);
+            
 
         } catch (SQLException ex) {
             Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
@@ -76,6 +81,10 @@ public class ServicesController {
 
             serviceDAO.Atualizar(existingService);
             JOptionPane.showMessageDialog(null, "Service Atualizado com Sucesso");
+            
+            views.dispose();
+            TelaService tela = new TelaService();
+            tela.setVisible(true);
         } else {
             // Se o serviço com o ID não existe, exiba uma mensagem de erro
             JOptionPane.showMessageDialog(null, "ID não encontrado. Não é possível atualizar o serviço.");

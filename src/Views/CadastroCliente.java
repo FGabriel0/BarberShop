@@ -4,6 +4,7 @@
  */
 package Views;
 import Controller.ClienteController;
+import javax.swing.JPasswordField;
 
 import javax.swing.JTextField;
 /**
@@ -46,11 +47,11 @@ public class CadastroCliente extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
-        TextSenha = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         TextConfirmSenha = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         RotaCliente = new javax.swing.JLabel();
+        TextSenha = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -123,15 +124,6 @@ public class CadastroCliente extends javax.swing.JFrame {
                 .addContainerGap(69, Short.MAX_VALUE))
         );
 
-        TextSenha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        TextSenha.setAlignmentX(0.0F);
-        TextSenha.setBorder(null);
-        TextSenha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextSenhaActionPerformed(evt);
-            }
-        });
-
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Senha:");
@@ -158,6 +150,12 @@ public class CadastroCliente extends javax.swing.JFrame {
             }
         });
 
+        TextSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextSenhaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -175,11 +173,11 @@ public class CadastroCliente extends javax.swing.JFrame {
                                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(TextEmail, javax.swing.GroupLayout.Alignment.LEADING))
                                 .addGap(31, 31, 31)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(TextConfirmSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(TextConfirmSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                                     .addComponent(jLabel4)
-                                    .addComponent(TextSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5)))
+                                    .addComponent(jLabel5)
+                                    .addComponent(TextSenha)))
                             .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                 .addGap(168, 168, 168)
@@ -199,9 +197,9 @@ public class CadastroCliente extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TextNome, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TextSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(TextNome, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                    .addComponent(TextSenha))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -226,10 +224,6 @@ public class CadastroCliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TextSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextSenhaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TextSenhaActionPerformed
-
     private void TextConfirmSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextConfirmSenhaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TextConfirmSenhaActionPerformed
@@ -252,6 +246,10 @@ public class CadastroCliente extends javax.swing.JFrame {
         loginCliente.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_RotaClienteMouseClicked
+
+    private void TextSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextSenhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextSenhaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -313,13 +311,16 @@ public class CadastroCliente extends javax.swing.JFrame {
         this.TextNome = TextNome;
     }
 
-    public JTextField getTextSenha() {
+    public JPasswordField getTextSenha() {
         return TextSenha;
     }
 
-    public void setTextSenha(JTextField TextSenha) {
+    public void setTextSenha(JPasswordField TextSenha) {
         this.TextSenha = TextSenha;
     }
+
+    
+    
     
     
 
@@ -329,7 +330,7 @@ public class CadastroCliente extends javax.swing.JFrame {
     private javax.swing.JTextField TextConfirmSenha;
     private javax.swing.JTextField TextEmail;
     private javax.swing.JTextField TextNome;
-    private javax.swing.JTextField TextSenha;
+    private javax.swing.JPasswordField TextSenha;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
