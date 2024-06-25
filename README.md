@@ -64,25 +64,4 @@ O projeto BarberShop foi criado para gerenciar agendamentos, clientes, serviços
 1. Abra o navegador e acesse `http://localhost:8080` para acessar a interface do sistema.
 2. Utilize os menus para navegar pelas funcionalidades disponíveis, como cadastro de clientes, agendamento de horários, etc.
 
-## Contribuição
-
-Se você deseja contribuir com o projeto, siga os passos abaixo:
-
-1. Faça um fork do repositório.
-2. Crie uma branch para sua feature ou correção:
-    ```bash
-    git checkout -b minha-feature
-    ```
-3. Faça commit das suas alterações:
-    ```bash
-    git commit -m 'Minha nova feature'
-    ```
-4. Envie para o repositório remoto:
-    ```bash
-    git push origin minha-feature
-    ```
-5. Abra um Pull Request no GitHub.
-
-
-
 
